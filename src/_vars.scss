@@ -1,0 +1,7 @@
+$spinTime: 50s;
+
+@mixin flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

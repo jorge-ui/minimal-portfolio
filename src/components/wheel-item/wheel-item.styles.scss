@@ -1,0 +1,33 @@
+@import "../../vars";
+
+.wheel-item {
+  @include flexCentered;
+  border: 1px solid orange;
+  border-radius: 100%;
+  width: 8vw;
+  height: 8vw;
+  position: absolute;
+  overflow: hidden;
+  .container {
+    @include flexCentered;
+    animation: spin $spinTime linear infinite reverse;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .wheel-item {
+    width: 8vh;
+    height: 8vh;
+  }
+}

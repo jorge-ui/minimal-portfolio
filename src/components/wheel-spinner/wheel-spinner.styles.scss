@@ -1,0 +1,27 @@
+@import "../../vars";
+
+.wheel-spinner {
+  position: relative;
+  background-color: lightblue;
+  width: 30vw;
+  height: 30vw;
+  border-radius: 100%;
+  @include flexCentered;
+  animation: spin $spinTime linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .wheel-spinner {
+    width: 30vh;
+    height: 30vh;
+  }
+}
