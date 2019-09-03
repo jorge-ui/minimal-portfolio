@@ -1,7 +1,7 @@
 import React from 'react';
 import './wheel-spinner.styles.scss';
 import WheelItem from '../wheel-item/wheel-item.component';
-import useWindowWidth from '../../custom-hooks/useWindowWidth';
+import useWindowWidth from '../../urils/useWindowWidth';
 
 const fullCircle = Math.PI * 2;
 
