@@ -2,8 +2,16 @@
 @import "./vars";
 
 .App {
+  position: relative;
   text-align: center;
   width: 100vw;
   height: 100vh;
   @include flexCentered;
+  img {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+  }
 }

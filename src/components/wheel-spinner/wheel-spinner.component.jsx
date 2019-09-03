@@ -5,17 +5,17 @@ import useWindowWidth from '../../custom-hooks/useWindowWidth';
 
 const fullCircle = Math.PI * 2;
 
-const WheelSpinner = () => {
+const WheelSpinner = ({ children }) => {
   const windowWidth = useWindowWidth();
-
   const radius = windowWidth * 0.2;
+
   return (
     <div className="wheel-spinner">
-      {[...Array(5)].map((val, index, { length }) => {
+      {children.map((item, index, { length }) => {
         let theta = fullCircle * (index / length);
         let x = Math.cos(theta) * radius;
         let y = Math.sin(theta) * radius;
-        return <WheelItem key={index} i={index} x={x} y={y} />;
+        return <WheelItem key={item.name + index} {...item} x={x} y={y} />;
       })}
     </div>
   );

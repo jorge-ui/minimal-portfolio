@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.scss';
-import WheelSpinner from './components/wheel-spinner/wheel-spinner.component';
+// Components
+import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
+// Modules
+import { Route } from 'react-router-dom';
+import backgroundImage from './assets/white-background.jpg';
 
 function App() {
   return (
     <div className="App">
-      <WheelSpinner />
+      <Route exact path="/" component={MainMenuPage} />
+      <img src={backgroundImage} alt="background" />
     </div>
   );
 }
