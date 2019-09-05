@@ -6,16 +6,20 @@ import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
 import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
 import backgroundImage from './assets/white-background.jpg';
-import useRouter from './urils/useRouter';
-import { easeOutQuart } from './urils/easingFuctions';
+import useRouter from './utils/useRouter';
+import { easeInOutQuart } from './utils/easingFuctions';
+import CenterItem from './components/center-item/center-item.component';
+import ToolsPage from './pages/tools-page/tools-page.component';
 
 function App() {
   const { location } = useRouter();
 
+  const willNest = location.pathname.match(/\/\w+/g);
+
   const transitions = useTransition(
     location,
     location => location.pathname,
-    transitionsConfig
+    willNest ? nestInConfig : nestOutConfig
   );
 
   return (
@@ -24,37 +28,57 @@ function App() {
         <animated.div key={key} style={props} className="transition-div">
           <Switch location={item}>
             <Route exact path="/" component={MainMenuPage} />
+            <Route path="/tools" component={ToolsPage} />
           </Switch>
         </animated.div>
       ))}
+      <CenterItem />
       <img src={backgroundImage} alt="background" />
     </div>
   );
 }
 
-const transitionsConfig = {
+const nestOutConfig = {
   from: {
     opacity: 0,
     transform: 'scale(1.0)'
   },
-  enter: item => async next => {
-    await next({ config: { duration: 7 } });
-    await next({ transform: 'scale(0.0)', config: { duration: 7 } });
+  enter: () => async next => {
+    await next({ transform: 'scale(3.0)', config: { duration: 100 } });
     await next({
-      opacity: 0.9,
+      opacity: 1,
       transform: 'scale(1.0)'
     });
   },
-  leave: item => async next => {
-    await next({ zIndex: -1, config: { duration: 5 } });
-    await next({
-      opacity: -0.2,
-      transform: 'scale(0.0)'
-    });
+  leave: {
+    opacity: 0,
+    transform: 'scale(0.0)'
   },
   config: {
     duration: 600,
-    easing: easeOutQuart
+    easing: easeInOutQuart
+  }
+};
+
+const nestInConfig = {
+  from: {
+    opacity: 0,
+    transform: 'scale(1.0)'
+  },
+  enter: () => async next => {
+    await next({ transform: 'scale(0.2)', config: { duration: 50 } });
+    await next({
+      opacity: 1,
+      transform: 'scale(1.0)'
+    });
+  },
+  leave: {
+    opacity: 0,
+    transform: 'scale(3.0)'
+  },
+  config: {
+    duration: 600,
+    easing: easeInOutQuart
   }
 };
 

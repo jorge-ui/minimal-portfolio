@@ -4,14 +4,15 @@ import './wheel-item.styles.scss';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
-const WheelItem = ({ x, y, icon, history, match, route }) => (
+const WheelItem = ({ x, y, icon, history, match, route, name }) => (
   <div
     className="wheel-item"
     style={{ transform: `translate(${x}px, ${y}px)` }}
     onClick={() => history.push(`${match.url}${route}`)}
   >
     <div className="container">
-      <Icon icon={icon} className="icon" />
+      {icon && <Icon icon={icon} className="icon" />}
+      <span className="name">{name}</span>
     </div>
   </div>
 );

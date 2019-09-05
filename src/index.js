@@ -10,10 +10,11 @@ import {
   faGraduationCap,
   faRoad,
   faCode,
-  faIdBadge
+  faIdBadge,
+  faUndoAlt
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTools, faGraduationCap, faRoad, faCode, faIdBadge);
+library.add(faTools, faGraduationCap, faRoad, faCode, faIdBadge, faUndoAlt);
 ReactDOM.render(
   <BrowserRouter>
     <App />
