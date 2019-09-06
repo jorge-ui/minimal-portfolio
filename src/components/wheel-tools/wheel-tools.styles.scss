@@ -1,0 +1,18 @@
+@import "../../vars";
+
+.wheel-tools {
+  position: relative;
+  border: 1px solid rgb(221, 221, 221);
+  width: 40vw;
+  height: 40vw;
+  border-radius: 100%;
+  @include flexCentered;
+  animation: spin $spinTime linear infinite;
+}
+
+@media only screen and (max-width: 575px) {
+  .wheel-tools {
+    width: 37vh;
+    height: 37vh;
+  }
+}

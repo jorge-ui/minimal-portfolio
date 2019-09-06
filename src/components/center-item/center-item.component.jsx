@@ -2,9 +2,14 @@ import React from 'react';
 import './center-item.styles.scss';
 import { useTransition, animated } from 'react-spring';
 import { withRouter } from 'react-router-dom';
-import DinamicButton from '../dinamic-button/dinamic-button.component';
+import DinamicCenter from '../dinamic-center/dinamic-center.component';
+// Redux
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCenterSize } from '../../redux/center/center.selectors';
 
-const CenterItem = ({ location: { pathname } }) => {
+const CenterItem = ({ location: { pathname }, size }) => {
+  const isNestedLoaction = Boolean(pathname.match(/\/\w+/));
   const transition = useTransition(pathname, pathname, {
     from: {
       transform: 'rotateY(-180deg)',
@@ -24,14 +29,22 @@ const CenterItem = ({ location: { pathname } }) => {
   });
 
   return (
-    <div className="center-item" pathname={String(Boolean(pathname.slice(1)))}>
+    <div
+      className="center-item"
+      style={{ width: size, height: size }}
+      nested={String(isNestedLoaction)}
+    >
       {transition.map(({ item, props, key }) => (
         <animated.span key={key} style={props} className="transition-center">
-          <DinamicButton pathname={item} />
+          <DinamicCenter pathname={item} />
         </animated.span>
       ))}
     </div>
   );
 };
 
-export default withRouter(CenterItem);
+const mapStateToProps = createStructuredSelector({
+  size: selectCenterSize
+});
+
+export default withRouter(connect(mapStateToProps)(CenterItem));

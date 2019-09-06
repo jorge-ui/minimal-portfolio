@@ -13,12 +13,16 @@ import {
   faIdBadge,
   faUndoAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 library.add(faTools, faGraduationCap, faRoad, faCode, faIdBadge, faUndoAlt);
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

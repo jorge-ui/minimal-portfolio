@@ -2,19 +2,17 @@ import React from 'react';
 import './App.scss';
 // Components
 import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
+import CenterItem from './components/center-item/center-item.component';
+import ToolsPage from './pages/tools-page/tools-page.component';
 // Modules
 import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
 import backgroundImage from './assets/white-background.jpg';
-import useRouter from './utils/useRouter';
 import { easeInOutQuart } from './utils/easingFuctions';
-import CenterItem from './components/center-item/center-item.component';
-import ToolsPage from './pages/tools-page/tools-page.component';
+import { withRouter } from 'react-router-dom';
 
-function App() {
-  const { location } = useRouter();
-
-  const willNest = location.pathname.match(/\/\w+/g);
+function App({ location }) {
+  const willNest = Boolean(location.pathname.match(/\/\w+/g));
 
   const transitions = useTransition(
     location,
@@ -82,4 +80,4 @@ const nestInConfig = {
   }
 };
 
-export default App;
+export default withRouter(App);
