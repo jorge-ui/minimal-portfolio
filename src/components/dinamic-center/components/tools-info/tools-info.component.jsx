@@ -7,7 +7,7 @@ import { clearShowingTool } from '../../../../redux/tools/tools.actions';
 const ToolsInfo = ({ item, clearShowingTool }) => (
   <div
     className="tools-info"
-    style={{ background: item.color }}
+    style={{ background: item.background, color: item.color }}
     onMouseEnter={() => clearTimeout(window.clearToolTimeout)}
     onMouseLeave={clearShowingTool}
     onClick={clearShowingTool}

@@ -5,7 +5,7 @@ import ToolsInfo from '../tools-info/tools-info.component';
 // Modules
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
-import { useTransition, animated } from 'react-spring';
+import { useTransition, animated, config } from 'react-spring';
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -36,17 +36,18 @@ const mapStateToProps = createStructuredSelector({
 
 const transitionConfig = {
   from: {
-    opacity: 0
+    opacity: 0,
+    transform: 'rotate(-90deg)'
   },
   enter: {
-    opacity: 1
+    opacity: 1,
+    transform: 'rotate(0deg)'
   },
   leave: {
-    opacity: 0
+    opacity: 0,
+    transform: 'rotate(90deg)'
   },
-  config: {
-    duration: 300
-  }
+  config: config.stiff
 };
 
 export default withRouter(connect(mapStateToProps)(ToolsCenter));

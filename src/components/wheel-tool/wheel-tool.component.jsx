@@ -15,7 +15,7 @@ const WheelTool = ({
   setShowingTool,
   clearShowingTool
 }) => {
-  const { logo, name, color } = item;
+  const { logo, name, background } = item;
 
   function showTool() {
     if (!props.opacity.done) return;
@@ -33,7 +33,7 @@ const WheelTool = ({
       style={{
         ...props,
         transform: position.interpolate((x, y) => `translate(${x}px, ${y}px)`),
-        background: color
+        background
       }}
       onMouseEnter={showTool}
       onMouseLeave={clearTool}
