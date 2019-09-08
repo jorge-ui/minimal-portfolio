@@ -1,2 +1,4 @@
 export const SET_CENTER_SIZE = 'SET_CENTER_SIZE';
 export const RESET_CENTER_SIZE = 'RESET_CENTER_SIZE';
+export const SET_CENTER_XY = 'SET_CENTER_XY';
+export const RESET_CENTER_XY = 'RESET_CENTER_XY';

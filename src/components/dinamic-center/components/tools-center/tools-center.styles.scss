@@ -6,18 +6,4 @@
   height: 100%;
   border-radius: 100%;
   @include flexCentered;
-  .go-back {
-    @include flexCentered;
-    width: 100%;
-    height: 100%;
-    &:hover {
-      cursor: pointer;
-      background-color: $bgGrey;
-    }
-  }
-  .icon {
-    width: 50%;
-    height: 50%;
-    color: $iconColor;
-  }
 }

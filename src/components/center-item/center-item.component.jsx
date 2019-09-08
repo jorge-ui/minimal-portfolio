@@ -6,34 +6,23 @@ import DinamicCenter from '../dinamic-center/dinamic-center.component';
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCenterSize } from '../../redux/center/center.selectors';
+import { resetCenterXy } from '../../redux/center/center.actions';
+import {
+  selectCenterSize,
+  selectCenterXy
+} from '../../redux/center/center.selectors';
 
-const CenterItem = ({ location: { pathname }, size }) => {
-  const isNestedLoaction = Boolean(pathname.match(/\/\w+/));
-  const transition = useTransition(pathname, pathname, {
-    from: {
-      transform: 'rotateY(-180deg)',
-      zIndex: 100
-    },
-    enter: {
-      transform: 'rotateY(0dge)',
-      zIndex: 1
-    },
-    leave: {
-      transform: 'rotateY(180deg)'
-    },
-    config: {
-      friction: 15,
-      mass: 2
-    }
-  });
+const CenterItem = ({ location: { pathname }, size, xy, resetCenterXy }) => {
+  const isNested = Boolean(pathname.match(/\/\w+/));
+
+  if (!isNested && xy.some(p => !!p)) resetCenterXy();
+
+  const transition = useTransition(pathname, pathname, transitionConfig);
+
+  const centerStyle = { width: size, height: size, left: xy[0], top: xy[1] };
 
   return (
-    <div
-      className="center-item"
-      style={{ width: size, height: size }}
-      nested={String(isNestedLoaction)}
-    >
+    <div className="center-item" style={centerStyle} nested={String(isNested)}>
       {transition.map(({ item, props, key }) => (
         <animated.span key={key} style={props} className="transition-center">
           <DinamicCenter pathname={item} />
@@ -44,7 +33,35 @@ const CenterItem = ({ location: { pathname }, size }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  size: selectCenterSize
+  size: selectCenterSize,
+  xy: selectCenterXy
 });
 
-export default withRouter(connect(mapStateToProps)(CenterItem));
+const mapActionsToProps = {
+  resetCenterXy
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapActionsToProps
+  )(CenterItem)
+);
+
+const transitionConfig = {
+  from: {
+    transform: 'rotateY(-180deg)',
+    zIndex: 100
+  },
+  enter: {
+    transform: 'rotateY(0dge)',
+    zIndex: 1
+  },
+  leave: {
+    transform: 'rotateY(180deg)'
+  },
+  config: {
+    friction: 15,
+    mass: 2
+  }
+};
