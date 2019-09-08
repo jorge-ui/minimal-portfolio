@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.scss';
+import backgroundImage from './assets/white-background.jpg';
 // Components
 import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
 import CenterItem from './components/center-item/center-item.component';
 import ToolsPage from './pages/tools-page/tools-page.component';
+import ObjectivePage from './pages/objective-page/objective-page.component';
 // Modules
 import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
-import backgroundImage from './assets/white-background.jpg';
 import { easeInOutQuart } from './utils/easingFuctions';
 import { withRouter } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App({ location }) {
           <Switch location={item}>
             <Route exact path="/" component={MainMenuPage} />
             <Route path="/tools" component={ToolsPage} />
+            <Route path="/objective" component={ObjectivePage} />
           </Switch>
         </animated.div>
       ))}
