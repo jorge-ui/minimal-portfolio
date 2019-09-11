@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { clearShowingTool } from '../../redux/tools/tools.actions';
 
 const fullCircle = Math.PI * 2;
+const transitionDelay = 300;
+const transitionTrial = 50;
 
 const WheelTools = ({ children, clearShowingTool }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,7 +32,9 @@ const WheelTools = ({ children, clearShowingTool }) => {
       positioned: [0, 0]
     },
     enter: ({ positioned, index }) => async next => {
-      await next({ config: { duration: 300 + 50 * index } }); // delay + trail
+      await next({
+        config: { duration: transitionDelay + transitionTrial * index }
+      }); // delay + trail
       return next({ opacity: 1, positioned });
     },
     config: {

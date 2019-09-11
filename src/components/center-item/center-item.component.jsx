@@ -15,11 +15,16 @@ import {
 const CenterItem = ({ location: { pathname }, size, xy, resetCenterXy }) => {
   const isNested = Boolean(pathname.match(/\/\w+/));
 
-  if (!isNested && xy.some(p => !!p)) resetCenterXy();
+  if (!isNested && xy.some(n => !!n)) resetCenterXy();
 
   const transition = useTransition(pathname, pathname, transitionConfig);
 
-  const centerStyle = { width: size, height: size, left: xy[0], top: xy[1] };
+  const centerStyle = {
+    width: size,
+    height: size,
+    left: xy[0],
+    top: xy[1]
+  };
 
   return (
     <div className="center-item" style={centerStyle} nested={String(isNested)}>

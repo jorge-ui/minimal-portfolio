@@ -6,6 +6,7 @@ import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
 import CenterItem from './components/center-item/center-item.component';
 import ToolsPage from './pages/tools-page/tools-page.component';
 import ObjectivePage from './pages/objective-page/objective-page.component';
+import PortfolioPage from './pages/portfolio-page/portfolio-page.component';
 // Modules
 import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
@@ -29,6 +30,7 @@ function App({ location }) {
             <Route exact path="/" component={MainMenuPage} />
             <Route path="/tools" component={ToolsPage} />
             <Route path="/objective" component={ObjectivePage} />
+            <Route path="/portfolio" component={PortfolioPage} />
           </Switch>
         </animated.div>
       ))}
