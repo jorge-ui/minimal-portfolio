@@ -1,20 +1,55 @@
 import React from 'react';
 import './portfolio-page.styles.scss';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+// Components
 import ProjectsSlider from '../../components/projects-slider/projects-slider.component';
+// Modules
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+// Redux
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectDisabledArrow } from '../../redux/projects/projects.selectors';
+import {
+  nextProject,
+  previousProject
+} from '../../redux/projects/projects.actions';
 
-const PortfolioPage = () => (
-  <div className="portfolio-page">
-    <div className="button">
-      <Icon icon="chevron-left" />
-    </div>
-    <div className="projects">
-      <ProjectsSlider />
-    </div>
-    <div className="button">
-      <Icon icon="chevron-right" />
-    </div>
-  </div>
-);
+const PortfolioPage = ({ disabledArrow, nextProject, previousProject }) => {
+  const disablePrevious = disabledArrow.includes('left');
+  const disableNext = disabledArrow.includes('right');
 
-export default PortfolioPage;
+  return (
+    <div className="portfolio-page">
+      <div
+        className="button"
+        disabled={disablePrevious}
+        onClick={() => !disablePrevious && previousProject()}
+      >
+        <Icon icon="chevron-left" />
+      </div>
+      <div className="projects">
+        <ProjectsSlider />
+      </div>
+      <div
+        className="button"
+        disabled={disableNext}
+        onClick={() => !disableNext && nextProject()}
+      >
+        <Icon icon="chevron-right" />
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = createStructuredSelector({
+  disabledArrow: selectDisabledArrow
+});
+
+const mapActionsToProps = {
+  nextProject,
+  previousProject
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(PortfolioPage);
