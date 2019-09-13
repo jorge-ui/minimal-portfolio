@@ -13,7 +13,8 @@ import {
   faIdBadge,
   faUndoAlt,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faExternalLinkSquareAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -26,7 +27,8 @@ library.add(
   faIdBadge,
   faUndoAlt,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faExternalLinkSquareAlt
 );
 ReactDOM.render(
   <Provider store={store}>

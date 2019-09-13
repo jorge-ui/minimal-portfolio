@@ -1,6 +1,7 @@
 @import "../../vars";
 
 $buttonHoverOpacity: .5;
+$ellipseBackgroung: radial-gradient(ellipse, rgba(100,100,100,$buttonHoverOpacity) 0%, rgba(255,255,255,0) 65%);
 
 .portfolio-page {
   @include flexCentered;
@@ -28,10 +29,10 @@ $buttonHoverOpacity: .5;
         transform: scale(1.4);
       }
       &:first-of-type {
-        background: radial-gradient(ellipse, rgba(100,100,100,$buttonHoverOpacity) 0%, rgba(255,255,255,0) 65%) right/200%;
+        background: $ellipseBackgroung right/200%;
       }
       &:last-of-type {
-        background: radial-gradient(ellipse, rgba(100,100,100,$buttonHoverOpacity) 0%, rgba(255,255,255,0) 65%) left/200%;
+        background: $ellipseBackgroung left/200%;
       }
     }
     svg {
@@ -41,7 +42,10 @@ $buttonHoverOpacity: .5;
       transition: transform 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     &[disabled] {
-      opacity: .3;
+      opacity: .4;
+      svg {
+        color: desaturate($color: $iconColor, $amount: 100%);
+      }
     }
   }
 }

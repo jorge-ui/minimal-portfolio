@@ -1,7 +1,6 @@
-import React from 'react';
-import './projects-slider.styles.scss';
+import React, { useEffect } from 'react';
 // Modules
-import { useTransition, animated } from 'react-spring';
+import { useTransition } from 'react-spring';
 import usePrevious from '../../utils/usePrevious';
 // Redux
 import { connect } from 'react-redux';
@@ -10,21 +9,45 @@ import {
   selectProjectsItems,
   selectProjectsCurrentItem
 } from '../../redux/projects/projects.selectors';
+import {
+  nextProject,
+  previousProject
+} from '../../redux/projects/projects.actions';
+import ProjectItem from '../project-item/project-item.component';
 
 const delay = 100;
 
-const ProjectsSlider = ({ projectsItems, currentProject }) => {
+const ProjectsSlider = ({
+  projectsItems,
+  currentProject,
+  nextProject,
+  previousProject
+}) => {
+  useEffect(() => {
+    window.onkeydown = ({ keyCode }) => {
+      switch (keyCode) {
+        case 39:
+          return nextProject();
+        case 37:
+          return previousProject();
+        default:
+          break;
+      }
+    };
+    return () => (window.onkeydown = null);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const prev = usePrevious(currentProject);
   const isNextSlide = prev < currentProject;
+
   const transition = useTransition(
     projectsItems[currentProject],
     item => item.id,
     isNextSlide ? nextTransitionConfig : previousTransitionConfig
   );
+
   return transition.map(({ item, key, props }) => (
-    <animated.div className="project-item" key={key} style={props}>
-      {item.text}
-    </animated.div>
+    <ProjectItem project={item} key={key} props={props} />
   ));
 };
 
@@ -33,7 +56,15 @@ const mapStateToProps = createStructuredSelector({
   currentProject: selectProjectsCurrentItem
 });
 
-export default connect(mapStateToProps)(ProjectsSlider);
+const mapActionsToProps = {
+  nextProject,
+  previousProject
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(ProjectsSlider);
 
 const previousTransitionConfig = {
   from: {
@@ -48,12 +79,12 @@ const previousTransitionConfig = {
         next({
           transform: 'matrix(1, 0, 0, 1, 0, 0)'
         }),
-      delay * 2.5
+      delay * 2
     );
   },
   leave: item => async next => {
     next({
-      transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.4},0)`
+      transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.3},0)`
     });
     setTimeout(
       () =>
@@ -82,12 +113,12 @@ const nextTransitionConfig = {
         next({
           transform: 'matrix(1, 0, 0, 1, 0, 0)'
         }),
-      delay * 2.5
+      delay * 2
     );
   },
   leave: item => async next => {
     next({
-      transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.4},0)`
+      transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.3},0)`
     });
     setTimeout(
       () =>
