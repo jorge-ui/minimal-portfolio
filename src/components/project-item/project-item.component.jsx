@@ -3,6 +3,7 @@ import './project-item.styles.scss';
 // Modules
 import { animated } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import ProjectToolsList from './project-tools-list/project-tools-list.component';
 
 const ProjectItem = ({ project, props }) => (
   <animated.div className="project-item" style={props}>
@@ -21,7 +22,7 @@ const ProjectItem = ({ project, props }) => (
     <div className="details">
       <div className="info-tools">
         <h3>Built using:</h3>
-        <ul className="tools-list"></ul>
+        <ProjectToolsList tools={project.tools} />
       </div>
       <div className="vhr" />
       <div className="info-screenshots">

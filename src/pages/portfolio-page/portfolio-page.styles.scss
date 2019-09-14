@@ -17,6 +17,7 @@ $ellipseBackgroung: radial-gradient(ellipse, rgba(100,100,100,$buttonHoverOpacit
     flex: 7;
     padding: 2vh;
     box-sizing: border-box;
+    max-width: 1250px;
   }
   .button {
     @include flexCentered;
