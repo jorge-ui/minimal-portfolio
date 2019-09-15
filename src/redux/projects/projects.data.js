@@ -10,7 +10,23 @@ const projectsData = [
       'React Spring',
       'Google Firebase',
       'Stripe'
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/crown-clothing/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/crown-clothing/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/crown-clothing/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/crown-clothing/screenshots/desktop/desktop(3).png'),
+        require('../../assets/projects/crown-clothing/screenshots/desktop/desktop(4).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/crown-clothing/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/crown-clothing/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/crown-clothing/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/crown-clothing/screenshots/mobile/mobile(3).png'),
+        require('../../assets/projects/crown-clothing/screenshots/mobile/mobile(4).png'),
+      ]
+    }
   },
   {
     id: 2,
@@ -21,7 +37,21 @@ const projectsData = [
       'Vanilla Javascript',
       'HTML Canvas',
       'Pixabay Image API',
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/space-image-visualizer/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/desktop/desktop(3).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/space-image-visualizer/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/space-image-visualizer/screenshots/mobile/mobile(3).png'),
+      ]
+    }
   },
   {
     id: 3,
@@ -34,7 +64,27 @@ const projectsData = [
       'Node.js',
       'MongoDB',
       'Bootstrap'
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(3).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(4).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(5).png'),
+        require('../../assets/projects/dev-connector/screenshots/desktop/desktop(6).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(3).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(4).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(5).png'),
+        require('../../assets/projects/dev-connector/screenshots/mobile/mobile(6).png'),
+      ]
+    }
   },
   {
     id: 4,
@@ -45,7 +95,21 @@ const projectsData = [
       'Node.js',
       'Stripe',
       'Sass'
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/burger-builder/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/burger-builder/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/burger-builder/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/burger-builder/screenshots/desktop/desktop(3).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/burger-builder/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/burger-builder/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/burger-builder/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/burger-builder/screenshots/mobile/mobile(3).png'),
+      ]
+    }
   },
   {
     id: 5,
@@ -56,7 +120,22 @@ const projectsData = [
       'Vanilla Javascript',
       'Node.js',
       'Express.js',
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/old-portfolio/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/old-portfolio/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/old-portfolio/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/old-portfolio/screenshots/desktop/desktop(3).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/old-portfolio/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/old-portfolio/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/old-portfolio/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/old-portfolio/screenshots/mobile/mobile(3).png'),
+        require('../../assets/projects/old-portfolio/screenshots/mobile/mobile(4).png'),
+      ]
+    }
   },
   {
     id: 6,
@@ -67,7 +146,21 @@ const projectsData = [
       'jQuery',
       'Vanilla Javascript',
       'Bootstrap',
-    ]
+    ],
+    screenshots: {
+      desktop: [
+        require('../../assets/projects/the-great-rgb/screenshots/desktop/desktop(0).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/desktop/desktop(1).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/desktop/desktop(2).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/desktop/desktop(3).png'),
+      ],
+      mobile: [
+        require('../../assets/projects/the-great-rgb/screenshots/mobile/mobile(0).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/mobile/mobile(1).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/mobile/mobile(2).png'),
+        require('../../assets/projects/the-great-rgb/screenshots/mobile/mobile(3).png'),
+      ]
+    }
   }
 ];
 

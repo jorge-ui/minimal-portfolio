@@ -4,6 +4,7 @@ import './project-item.styles.scss';
 import { animated } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import ProjectToolsList from './project-tools-list/project-tools-list.component';
+import ScreenshotsSlider from './screenshots-slider/screenshots-slider.component';
 
 const ProjectItem = ({ project, props }) => (
   <animated.div className="project-item" style={props}>
@@ -28,7 +29,7 @@ const ProjectItem = ({ project, props }) => (
       <div className="info-screenshots">
         <h3>Screenshots:</h3>
         <div className="screenshots-container">
-          <div className="screenshots-slider"></div>
+          <ScreenshotsSlider screenshots={project.screenshots} />
         </div>
       </div>
     </div>
