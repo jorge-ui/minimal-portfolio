@@ -1,13 +1,27 @@
 @import "../../vars";
 
-.wheel-spinner {
-  position: relative;
-  border: 1px solid rgb(221, 221, 221);
+@mixin spinnerStyles {
   width: 40vw;
   height: 40vw;
   border-radius: 100%;
+}
+
+
+.wheel-spinner {
+  position: relative;
+  @include spinnerStyles;
   @include flexCentered;
   animation: spin $spinTime linear infinite;
+  @include boxShadow(inset);
+  &::after {
+    content: '';
+    @include spinnerStyles;
+    position: absolute;
+    left: 0;
+    right: 0;
+    @include boxShadow;
+    z-index: -1;
+  }
 }
 
 @media only screen and (max-width: 575px) {

@@ -8,7 +8,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  background-color: white;
+  background-color: $itemBg;
   transform: translate(-50%, -50%);
   transition: 
     width 600ms cubic-bezier(0.165, 0.84, 0.44, 1),
@@ -17,7 +17,7 @@
     height 600ms cubic-bezier(0.165, 0.84, 0.44, 1);
   .transition-center {
     @include flexCentered;
-    box-shadow: 0 0 10px rgb(223, 223, 223);
+    @include boxShadow;
     position: absolute;
     border-radius: 100%;
     overflow: hidden;

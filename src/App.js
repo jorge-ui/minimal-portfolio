@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.scss';
-import backgroundImage from './assets/white-background.jpg';
+import backgroundImage from './assets/dark-background.jpg';
 // Components
 import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
 import CenterItem from './components/center-item/center-item.component';
 import ToolsPage from './pages/tools-page/tools-page.component';
 import ObjectivePage from './pages/objective-page/objective-page.component';
 import PortfolioPage from './pages/portfolio-page/portfolio-page.component';
+import Canvas from './components/canvas/canvas.component';
 // Modules
 import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
@@ -36,6 +37,7 @@ function App({ location }) {
       ))}
       <CenterItem />
       <img src={backgroundImage} alt="background" />
+      <Canvas active={!willNest} />
     </div>
   );
 }

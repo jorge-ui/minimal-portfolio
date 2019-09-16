@@ -2,13 +2,13 @@
 
 .wheel-item {
   @include flexCentered;
-  background-color: white;
+  background-color: $itemBg;
   border-radius: 100%;
   width: 8vw;
   height: 8vw;
   position: absolute;
   overflow: hidden;
-  box-shadow: 0 0 10px transparentize($iconColor, .7);
+  box-shadow: 0 0 8px 1px lighten($color: $iconColor, $amount: 10%);
   transition: background-color 300ms ease-out;
   &:hover {
     cursor: pointer;

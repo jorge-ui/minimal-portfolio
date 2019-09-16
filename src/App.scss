@@ -1,18 +1,25 @@
 
 @import "./vars";
 
+@mixin fixedPos($zIndex: 0) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $zIndex;
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+}
+
 .App {
   position: relative;
   width: 100vw;
   height: 100vh;
   & > img {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -10;
-    width: 100vw;
-    height: 100vh;
-    user-select: none;
+    @include fixedPos(-10);
+  }
+  & > canvas {
+    @include fixedPos(-5);
   }
   .transition-div {
     position: absolute;
