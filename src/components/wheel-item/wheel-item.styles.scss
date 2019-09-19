@@ -12,7 +12,7 @@
   transition: background-color 300ms ease-out;
   &:hover {
     cursor: pointer;
-    background-color: $bgGrey;
+    background-color: $itemHover;
     .container {
       .name {
         height: 18px;

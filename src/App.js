@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import backgroundImage from './assets/dark-background.jpg';
+import backgroundImage from './assets/white-background.jpg';
 // Components
 import MainMenuPage from './pages/main-menu-page/main-menu-page.component';
 import CenterItem from './components/center-item/center-item.component';
@@ -33,11 +33,11 @@ function App({ location }) {
             <Route path="/objective" component={ObjectivePage} />
             <Route path="/portfolio" component={PortfolioPage} />
           </Switch>
+          <Canvas active={!willNest} />
         </animated.div>
       ))}
       <CenterItem />
       <img src={backgroundImage} alt="background" />
-      <Canvas active={!willNest} />
     </div>
   );
 }

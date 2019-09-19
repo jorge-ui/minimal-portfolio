@@ -67,6 +67,10 @@ export default connect(
 )(ProjectsSlider);
 
 const previousTransitionConfig = {
+  initial: {
+    transform: 'matrix(1, 0, 0, 1, 0, 0)',
+    opacity: 1
+  },
   from: {
     transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.8},0)`,
     opacity: 0
@@ -101,6 +105,10 @@ const previousTransitionConfig = {
 };
 
 const nextTransitionConfig = {
+  initial: {
+    transform: 'matrix(1, 0, 0, 1, 0, 0)',
+    opacity: 1
+  },
   from: {
     transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.8},0)`,
     opacity: 0

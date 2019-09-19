@@ -10,11 +10,29 @@
   backface-visibility: hidden;
   background-color: rgba(100, 100, 100, .1);
   border-radius: 5px;
+  &[fullscreenshot=true] {
+    .header {
+      flex: 0;
+    }
+    .hr {
+      margin: 0;
+    }
+    .details {
+      .info-tools-wraper {
+        flex: 0;
+      }
+      .vhr {
+        margin: 0;
+      }
+    }
+  }
   .header {
     display: flex;
     align-items: stretch;
     flex: 1;
     width: 100%;
+    overflow: hidden;
+    transition: flex 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
     .image-wraper {
       @include flexCentered;
       position: relative;
@@ -30,29 +48,34 @@
         box-shadow: 0 0 10px rgba($color: grey, $alpha: .3);
       }
     }
-    .info {
-      display: block;
-      align-self: center;
-      .title {
-        margin-top: 0;
-      }
-      .open-link {
-        text-decoration: none;
-        background-color: $iconColor;
-        padding: 3px 10px;
-        border-radius: 50px;
-        color: white;
-        &:hover {
-          background-color: darken($color: $iconColor, $amount: 20%);
-          text-shadow: 0 0 3px white;
-          svg {
-            width: 15px;
-          }
+    .info-wraper {
+      flex: 1;
+      position: relative;
+      display: flex;
+      .info {
+        position: absolute;
+        align-self: center;
+        .title {
+          margin-top: 0;
         }
-        svg {
-          width: 0px;
-          transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-          overflow: hidden;
+        .open-link {
+          text-decoration: none;
+          background-color: $iconColor;
+          padding: 3px 10px;
+          border-radius: 50px;
+          color: white;
+          &:hover {
+            background-color: darken($color: $iconColor, $amount: 20%);
+            text-shadow: 0 0 3px white;
+            svg {
+              width: 15px;
+            }
+          }
+          svg {
+            width: 0px;
+            transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+          }
         }
       }
     }
@@ -72,11 +95,21 @@
     h3 {
       font-weight: normal;
     }
-    .info-tools {
+    .info-tools-wraper {
+      position: relative;
       flex: 1;
       display: flex;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      transition: flex 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+      .info-tools {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+      }
     }
     .vhr {
       border: 0;
@@ -94,11 +127,6 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      .screenshots-container {
-        position: relative;
-        flex: 1;
-        width: 75%; // TODO: adapt to mobile
-      }
     }
   }
 }

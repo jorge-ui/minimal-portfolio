@@ -3,25 +3,34 @@ import useWindowWidthAndHeight from '../../utils/useWindowWidthAndHeight';
 
 let wheelItems, canvas, ctx;
 let isOn = false;
+let bubbles = {};
+let bubblesCount = 0;
+const bubblesFpsInterval = 60;
+const bubblesDurationMs = 4400;
+const bubblesTransition = 1 / (bubblesDurationMs * 0.06);
+const bubblesRgbColor = '129, 194, 212';
+let leaveTimeout = null;
 
 const Canvas = ({ active }) => {
   const size = useWindowWidthAndHeight();
   const canvasRef = useRef(null);
 
+  useEffect(resetBubbles, [size]);
+
   useEffect(() => {
     if (active) {
-      bubbles = {};
-      bubblesCount = 0;
+      clearTimeout(leaveTimeout);
       isOn = false;
+      resetBubbles();
       canvas = canvasRef.current;
       ctx = canvas.getContext('2d');
       wheelItems = document.querySelectorAll('.wheel-item');
-      setTimeout(
-        () => (isOn = true && requestAnimationFrame(() => renderCanvas(0))),
-        1000
-      );
+      setTimeout(() => {
+        !isOn && requestAnimationFrame(() => renderCanvas(0));
+        isOn = true;
+      }, 650);
     } else {
-      wheelItems = [];
+      leaveTimeout = setTimeout(() => (isOn = false), 650);
     }
   }, [active]);
 
@@ -53,32 +62,35 @@ class Bubble {
   }
   X = this.X;
 }
-let bubbles = {};
-let bubblesCount = 0;
-const bubblesDurationMs = 5000;
-const bubblesTransition = 1 / (bubblesDurationMs * 0.06);
 
 // Render function
 const renderCanvas = frame => {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-  !(frame % 60) &&
-    wheelItems.forEach(({ firstChild: item }) => {
-      const { top, left, width, height } = item.getBoundingClientRect();
-      new Bubble(left + width / 2, top + height / 2, width / 2);
-    });
+  if (frame % bubblesFpsInterval === 0) newBubleToWheelItems();
 
-  for (let i in bubbles) {
-    bubbles[i].draw();
-  }
+  // eslint-disable-next-line no-unused-vars
+  for (let i in bubbles) bubbles[i].draw();
 
   isOn && requestAnimationFrame(() => renderCanvas(++frame));
 };
 
+function newBubleToWheelItems() {
+  wheelItems.forEach(({ firstChild: item }) => {
+    const { top, left, width, height } = item.getBoundingClientRect();
+    new Bubble(left + width / 2, top + height / 2, width / 2);
+  });
+}
+
 function drawBubble(x, y, r, opacity) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI * 2);
-  ctx.fillStyle = `rgba(100, 100, 100, ${0.5 * opacity})`;
+  ctx.fillStyle = `rgba(${bubblesRgbColor}, ${0.2 * opacity})`;
   ctx.fill();
   // ctx.stroke();
+}
+
+function resetBubbles() {
+  bubbles = {};
+  bubblesCount = 0;
 }

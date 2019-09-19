@@ -1,8 +1,7 @@
 $spinTime: 50s;
-// previous icon color: rgb(98, 98, 98);
-$iconColor: hsl(230, 50%, 67%);
-$bgGrey: rgb(221, 221, 221);
-$itemBg: rgb(42, 42, 42);
+$iconColor: rgb(129, 194, 212);
+$itemHover: rgb(221, 221, 221);
+$itemBg: rgb(250, 250, 250);
 
 @mixin flexCentered {
   display: flex;
@@ -11,7 +10,7 @@ $itemBg: rgb(42, 42, 42);
 }
 
 @mixin boxShadow($inset: null) {
-  box-shadow: $inset 0 0 5px 1px lighten($color: $iconColor, $amount: 10%);
+  box-shadow: $inset 0 0 1px 1px lighten($color: $iconColor, $amount: 10%);
 }
 
 @keyframes spin {

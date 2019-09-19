@@ -18,14 +18,17 @@
   & > img {
     @include fixedPos(-10);
   }
-  & > canvas {
-    @include fixedPos(-5);
-  }
   .transition-div {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     @include flexCentered;
+    .canvas {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      z-index: -5;
+    }
   }
 }

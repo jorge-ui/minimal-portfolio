@@ -14,7 +14,9 @@ import {
   faUndoAlt,
   faChevronLeft,
   faChevronRight,
-  faExternalLinkSquareAlt
+  faExternalLinkSquareAlt,
+  faDesktop,
+  faMobileAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -28,7 +30,9 @@ library.add(
   faUndoAlt,
   faChevronLeft,
   faChevronRight,
-  faExternalLinkSquareAlt
+  faExternalLinkSquareAlt,
+  faDesktop,
+  faMobileAlt
 );
 ReactDOM.render(
   <Provider store={store}>

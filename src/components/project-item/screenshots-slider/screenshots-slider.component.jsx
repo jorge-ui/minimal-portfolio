@@ -5,8 +5,14 @@ import usePrevious from '../../../utils/usePrevious';
 import { useTransition, animated } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
-const ScreenshotsSlider = ({ screenshots: { desktop, mobile } }) => {
+const ScreenshotsSlider = ({
+  screenshots: { desktop, mobile },
+  setFullScreenShot,
+  isFullScreenShot
+}) => {
   const [index, setIndex] = useState(desktop.length * 10000);
+  const [viewMobile, setViewMobile] = useState(false);
+
   const prevIndex = usePrevious(index);
   const isNextSlide = prevIndex < index;
 
@@ -28,23 +34,47 @@ const ScreenshotsSlider = ({ screenshots: { desktop, mobile } }) => {
   const previousSlide = () => setIndex(index - 1);
 
   return (
-    <div className="screenshots-slider">
-      {transition.map(({ item, key, props }) => (
-        <animated.img
-          className="screenshot-item"
-          style={props}
-          src={item}
-          key={key}
-          alt="screenshot"
-        />
-      ))}
-      <div className="arrows">
-        <div className="left-arrow" onClick={previousSlide}>
-          <Icon icon="chevron-left" />
+    <div className="screenshots-container">
+      <div className="screenshots-slider">
+        {transition.map(({ item, key, props }) => (
+          <animated.img
+            className="screenshot-item"
+            style={props}
+            src={item}
+            key={key}
+            alt="screenshot"
+          />
+        ))}
+        <div className="arrows">
+          <div className="left-arrow" onClick={previousSlide}>
+            <Icon icon="chevron-left" />
+          </div>
+          <div
+            className="zoom-in"
+            onClick={() => setFullScreenShot(!isFullScreenShot)}
+          />
+          <div className="right-arrow" onClick={nextSlide}>
+            <Icon icon="chevron-right" />
+          </div>
         </div>
-        <div className="zoom-in" />
-        <div className="right-arrow" onClick={nextSlide}>
-          <Icon icon="chevron-right" />
+      </div>
+      <div className="device-toggler">
+        <div className="device-icons">
+          <div
+            className="device-icon"
+            toggled={String(!viewMobile)}
+            onClick={() => setViewMobile(false)}
+          >
+            <Icon icon="desktop" />
+          </div>
+          <div
+            className="device-icon"
+            toggled={String(viewMobile)}
+            onClick={() => setViewMobile(true)}
+          >
+            <Icon icon="mobile-alt" />
+          </div>
+          <div className="device-selected" mobile={String(viewMobile)} />
         </div>
       </div>
     </div>
