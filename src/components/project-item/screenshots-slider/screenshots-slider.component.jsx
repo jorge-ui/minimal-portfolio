@@ -10,13 +10,14 @@ const ScreenshotsSlider = ({
   setFullScreenShot,
   isFullScreenShot
 }) => {
-  const [index, setIndex] = useState(desktop.length * 10000);
   const [viewMobile, setViewMobile] = useState(false);
+  const images = viewMobile ? mobile : desktop;
+  const [index, setIndex] = useState(images.length * 10000);
 
   const prevIndex = usePrevious(index);
   const isNextSlide = prevIndex < index;
 
-  const transition = useTransition(desktop[index % desktop.length], null, {
+  const transitionImages = useTransition(images[index % images.length], null, {
     initial: {
       opacity: 1,
       transform: 'translateX(0px)'
@@ -30,31 +31,50 @@ const ScreenshotsSlider = ({
     }
   });
 
+  const transitionDeviceView = useTransition(viewMobile, null, {
+    initial: {
+      transform: 'rotateY(0deg)'
+    },
+    from: {
+      transform: 'rotateY(-180deg)'
+    },
+    enter: {
+      transform: 'rotateY(0deg)'
+    },
+    leave: {
+      transform: 'rotateY(180deg)'
+    }
+  });
+
   const nextSlide = () => setIndex(index + 1);
   const previousSlide = () => setIndex(index - 1);
 
   return (
-    <div className="screenshots-container">
-      <div className="screenshots-slider">
-        {transition.map(({ item, key, props }) => (
-          <animated.img
-            className="screenshot-item"
-            style={props}
-            src={item}
-            key={key}
-            alt="screenshot"
-          />
-        ))}
-        <div className="arrows">
-          <div className="left-arrow" onClick={previousSlide}>
-            <Icon icon="chevron-left" />
-          </div>
-          <div
-            className="zoom-in"
-            onClick={() => setFullScreenShot(!isFullScreenShot)}
-          />
-          <div className="right-arrow" onClick={nextSlide}>
-            <Icon icon="chevron-right" />
+    <div className="screenshots-slider">
+      <div className="screenshots-container" is-mobile={String(viewMobile)}>
+        <div className="screenshot-item-wraper">
+          {transitionImages.map(({ item, key, props }) => (
+            <animated.img
+              className="screenshot-item"
+              style={props}
+              src={item}
+              key={key}
+              alt="screenshot"
+            />
+          ))}
+          <div className="arrows">
+            <div className="left-arrow" onClick={previousSlide}>
+              <Icon icon="chevron-left" />
+            </div>
+            <div
+              className="zoom-in"
+              onClick={() => setFullScreenShot(!isFullScreenShot)}
+              is-zoomed={String(isFullScreenShot)}
+              title={isFullScreenShot ? 'zoom out' : 'zoom in'}
+            />
+            <div className="right-arrow" onClick={nextSlide}>
+              <Icon icon="chevron-right" />
+            </div>
           </div>
         </div>
       </div>
