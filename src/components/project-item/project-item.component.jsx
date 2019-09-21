@@ -30,14 +30,21 @@ const ProjectItem = ({ project, props }) => {
       <div className="hr" />
       <div className="details">
         <div className="info-tools-wraper">
-          <div className="info-tools">
-            <h3>Built using:</h3>
-            <ProjectToolsList tools={project.tools} />
-          </div>
+          {!isFullScreenShot && (
+            <div className="info-tools">
+              <h3>
+                <Icon icon="tools" /> Built using:
+              </h3>
+              <ProjectToolsList tools={project.tools} />
+            </div>
+          )}
         </div>
         <div className="vhr" />
         <div className="info-screenshots">
-          <h3>Screenshots:</h3>
+          <h3>
+            <Icon icon="images" />
+            Screenshots:
+          </h3>
           <ScreenshotsSlider
             isFullScreenShot={isFullScreenShot}
             screenshots={project.screenshots}

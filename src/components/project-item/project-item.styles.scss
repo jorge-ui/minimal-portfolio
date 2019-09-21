@@ -57,6 +57,8 @@
         align-self: center;
         .title {
           margin-top: 0;
+          font-size: 2.2em;
+          font-weight: normal;
         }
         .open-link {
           text-decoration: none;
@@ -86,15 +88,23 @@
     height: .8px;
     width: 90%;
     z-index: 10;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    // background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   }
   .details {
     display: flex;
     flex: 2;
     width: 100%;
     h3 {
+      font-size: 1.3em;
       font-weight: normal;
       margin: 8px 0;
+      align-self: flex-start;
+      padding-left: 50px;
+      svg {
+        font-size: 1.5em;
+        color: $iconColor;
+        margin-right: 5px;
+      }
     }
     .info-tools-wraper {
       position: relative;
@@ -109,6 +119,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+        height: 100%;
         position: absolute;
       }
     }

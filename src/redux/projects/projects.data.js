@@ -63,7 +63,6 @@ const projectsData = [
       'Cloudinary API',
       'Node.js',
       'MongoDB',
-      'Bootstrap'
     ],
     screenshots: {
       desktop: [

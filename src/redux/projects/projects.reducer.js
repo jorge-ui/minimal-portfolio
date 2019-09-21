@@ -1,5 +1,9 @@
 import projectsData from './projects.data';
-import { NEXT_PROJECT_ITEM, PREVIOUS_PROJECT_ITEM } from './projects.types';
+import {
+  NEXT_PROJECT_ITEM,
+  PREVIOUS_PROJECT_ITEM,
+  SET_PROJECT_INDEX
+} from './projects.types';
 
 const INITIAL_STATE = {
   items: projectsData,
@@ -23,6 +27,11 @@ const projectsReducer = (state = INITIAL_STATE, { type, payload }) => {
           ...state,
           currentItem: currentItem - 1
         };
+    case SET_PROJECT_INDEX:
+      return {
+        ...state,
+        currentItem: payload
+      };
     default:
       return state;
   }

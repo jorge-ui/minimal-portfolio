@@ -2,6 +2,7 @@ import React from 'react';
 import './portfolio-page.styles.scss';
 // Components
 import ProjectsSlider from '../../components/projects-slider/projects-slider.component';
+import ProjectPagination from '../../components/project-pagination/project-pagination.component';
 // Modules
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 // Redux
@@ -36,6 +37,7 @@ const PortfolioPage = ({ disabledArrow, nextProject, previousProject }) => {
       >
         <Icon icon="chevron-right" />
       </div>
+      <ProjectPagination />
     </div>
   );
 };
