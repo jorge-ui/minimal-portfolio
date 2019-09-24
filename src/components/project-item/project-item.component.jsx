@@ -1,57 +1,55 @@
 import React, { useState } from 'react';
 import './project-item.styles.scss';
+// Components
+import ProjectFront from './project-front/project-front.component';
 // Modules
-import { animated } from 'react-spring';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import ProjectToolsList from './project-tools-list/project-tools-list.component';
-import ScreenshotsSlider from './screenshots-slider/screenshots-slider.component';
+import { easeOutCubic } from '../../utils/easingFuctions';
+import { animated, useTransition } from 'react-spring';
+import ProjectBack from './project-back/project-back.component';
+
+const flipUp = 'perspective(150vw) rotateX(-180deg)';
+const flipDown = 'perspective(150vw) rotateX(180deg)';
 
 const ProjectItem = ({ project, props }) => {
-  const [isFullScreenShot, setFullScreenShot] = useState(false);
+  const [isViewBackface, setIsViewBackface] = useState(false);
+
+  const faceTransition = useTransition(isViewBackface, null, {
+    initial: {
+      transform: 'perspective(0vw) rotateX(0deg)'
+    },
+    from: {
+      transform: isViewBackface ? flipUp : flipDown
+    },
+    enter: {
+      transform: 'perspective(150vw) rotateX(0deg)'
+    },
+    leave: {
+      transform: isViewBackface ? flipDown : flipUp
+    },
+    config: {
+      duration: 600,
+      easing: easeOutCubic
+    }
+  });
+
   return (
-    <animated.div
-      className="project-item"
-      style={props}
-      fullscreenshot={String(isFullScreenShot)}
-    >
-      <div className="header">
-        <div className="image-wraper">
-          <img className="image" src={project.icon} alt="imaaage" />
-        </div>
-        <div className="info-wraper">
-          <div className="info">
-            <h2 className="title">{project.title}</h2>
-            <a href="#" className="open-link">
-              Open <Icon icon="external-link-square-alt" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="hr" />
-      <div className="details">
-        <div className="info-tools-wraper">
-          {!isFullScreenShot && (
-            <div className="info-tools">
-              <h3>
-                <Icon icon="tools" /> Built using:
-              </h3>
-              <ProjectToolsList tools={project.tools} />
-            </div>
-          )}
-        </div>
-        <div className="vhr" />
-        <div className="info-screenshots">
-          <h3>
-            <Icon icon="images" />
-            Screenshots:
-          </h3>
-          <ScreenshotsSlider
-            isFullScreenShot={isFullScreenShot}
-            screenshots={project.screenshots}
-            setFullScreenShot={setFullScreenShot}
+    <animated.div className="project-item" style={props}>
+      {faceTransition.map(({ item, props, key }) =>
+        item ? (
+          <ProjectBack
+            setIsViewBackface={setIsViewBackface}
+            key={key}
+            props={props}
           />
-        </div>
-      </div>
+        ) : (
+          <ProjectFront
+            setIsViewBackface={setIsViewBackface}
+            key={key}
+            props={props}
+            project={project}
+          />
+        )
+      )}
     </animated.div>
   );
 };

@@ -4,6 +4,7 @@ import './screenshots-slider.styles.scss';
 import usePrevious from '../../../utils/usePrevious';
 import { useTransition, animated } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { easeOutCubic } from '../../../utils/easingFuctions';
 
 const ScreenshotsSlider = ({
   screenshots: { desktop, mobile },
@@ -18,17 +19,9 @@ const ScreenshotsSlider = ({
   const isNextSlide = prevIndex < index;
 
   const transitionImages = useTransition(images[index % images.length], null, {
-    initial: {
-      opacity: 1,
-      transform: 'translateX(0px)'
-    },
+    ...transitionConfig,
     from: isNextSlide ? rightPosHidden : leftPosHidden,
-    enter: centerPosShown,
-    leave: isNextSlide ? leftPosHidden : rightPosHidden,
-    config: {
-      mass: 1.3,
-      clamp: true
-    }
+    leave: isNextSlide ? leftPosHidden : rightPosHidden
   });
 
   const nextSlide = () => setIndex(index + 1);
@@ -74,6 +67,7 @@ const ScreenshotsSlider = ({
               className="device-icon"
               toggled={String(!viewMobile)}
               onClick={() => setViewMobile(false)}
+              title="desktop"
             >
               <Icon icon="desktop" />
             </div>
@@ -81,6 +75,7 @@ const ScreenshotsSlider = ({
               className="device-icon"
               toggled={String(viewMobile)}
               onClick={() => setViewMobile(true)}
+              title="mobile"
             >
               <Icon icon="mobile-alt" />
             </div>
@@ -96,15 +91,27 @@ export default ScreenshotsSlider;
 
 const rightPosHidden = {
   opacity: 0,
-  transform: 'translateX(200px)'
-};
-
-const centerPosShown = {
-  opacity: 1,
-  transform: 'translateX(0px)'
+  transform: 'scaleX(1.5)',
+  transformOrigin: 'center left'
 };
 
 const leftPosHidden = {
   opacity: 0,
-  transform: 'translateX(-200px)'
+  transform: 'scaleX(1.5)',
+  transformOrigin: 'center right'
+};
+
+const transitionConfig = {
+  initial: {
+    opacity: 1,
+    transform: 'translateX(0px)'
+  },
+  enter: {
+    opacity: 1,
+    transform: 'scaleX(1)'
+  },
+  config: {
+    duration: 450,
+    easing: easeOutCubic
+  }
 };

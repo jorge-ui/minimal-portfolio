@@ -1,8 +1,10 @@
 import React from 'react';
 import './center-item.styles.scss';
+// Components
+import DinamicCenter from '../dinamic-center/dinamic-center.component';
+// Modules
 import { useTransition, animated } from 'react-spring';
 import { withRouter } from 'react-router-dom';
-import DinamicCenter from '../dinamic-center/dinamic-center.component';
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';

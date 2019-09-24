@@ -1,0 +1,9 @@
+@import "../../../vars";
+
+.project-back {
+  @include projectFace;
+  background-color: rgba(80, 80, 80, .5);
+  .project-summary-exit {
+    @include flipFaceButton(darken($iconColor, 20%), lightgrey);
+  }
+}

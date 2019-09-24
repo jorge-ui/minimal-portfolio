@@ -19,7 +19,7 @@ const delay = 100;
 
 const ProjectsSlider = ({
   projectsItems,
-  currentProject,
+  currentProject: currentProjectIndex,
   nextProject,
   previousProject
 }) => {
@@ -37,11 +37,11 @@ const ProjectsSlider = ({
     return () => (window.onkeydown = null);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const prev = usePrevious(currentProject);
-  const isNextSlide = prev < currentProject;
+  const prev = usePrevious(currentProjectIndex);
+  const isNextSlide = prev < currentProjectIndex;
 
   const transition = useTransition(
-    projectsItems[currentProject],
+    projectsItems[currentProjectIndex],
     item => item.id,
     isNextSlide ? nextTransitionConfig : previousTransitionConfig
   );
@@ -65,6 +65,12 @@ export default connect(
   mapStateToProps,
   mapActionsToProps
 )(ProjectsSlider);
+
+const springConfig = {
+  clamp: true,
+  tension: 180,
+  friction: 25
+};
 
 const previousTransitionConfig = {
   initial: {
@@ -99,9 +105,7 @@ const previousTransitionConfig = {
       delay
     );
   },
-  config: {
-    clamp: true
-  }
+  config: springConfig
 };
 
 const nextTransitionConfig = {
@@ -137,9 +141,7 @@ const nextTransitionConfig = {
       delay
     );
   },
-  config: {
-    clamp: true
-  }
+  config: springConfig
 };
 
 function wait(time) {

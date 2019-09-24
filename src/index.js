@@ -18,7 +18,9 @@ import {
   faDesktop,
   faMobileAlt,
   faCheckSquare,
-  faImages
+  faImages,
+  faInfoCircle,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -36,7 +38,9 @@ library.add(
   faDesktop,
   faMobileAlt,
   faCheckSquare,
-  faImages
+  faImages,
+  faInfoCircle,
+  faSignOutAlt
 );
 ReactDOM.render(
   <Provider store={store}>
