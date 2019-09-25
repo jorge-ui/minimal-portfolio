@@ -77,8 +77,12 @@ const renderCanvas = frame => {
 
 function newBubleToWheelItems() {
   wheelItems.forEach(({ firstChild: item }) => {
+    let x, y, r;
     const { top, left, width, height } = item.getBoundingClientRect();
-    new Bubble(left + width / 2, top + height / 2, width / 2);
+    x = left + width / 2;
+    y = top + height / 2;
+    r = width / 2;
+    new Bubble(x, y, r);
   });
 }
 
@@ -87,7 +91,6 @@ function drawBubble(x, y, r, opacity) {
   ctx.arc(x, y, r, 0, Math.PI * 2);
   ctx.fillStyle = `rgba(${bubblesRgbColor}, ${0.2 * opacity})`;
   ctx.fill();
-  // ctx.stroke();
 }
 
 function resetBubbles() {

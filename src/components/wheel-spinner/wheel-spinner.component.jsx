@@ -8,7 +8,8 @@ const fullCircle = Math.PI * 2;
 const WheelSpinner = ({ children }) => {
   const { length } = children;
   const windowWidth = useWindowWidth();
-  const radius = windowWidth * 0.2;
+  const radius =
+    window.innerWidth < 576 ? windowWidth * 0.385 : windowWidth * 0.2;
 
   return (
     <div className="wheel-spinner">

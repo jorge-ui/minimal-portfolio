@@ -33,7 +33,7 @@ function App({ location }) {
             <Route path="/objective" component={ObjectivePage} />
             <Route path="/portfolio" component={PortfolioPage} />
           </Switch>
-          <Canvas active={!willNest} />
+          {!window.isMobile && <Canvas active={!willNest} />}
         </animated.div>
       ))}
       <CenterItem />

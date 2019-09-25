@@ -1,11 +1,15 @@
 @import "../../vars";
 
+@mixin spinnerItemStyles($size: 8vw) {
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+}
+
 .wheel-item {
   @include flexCentered;
+  @include spinnerItemStyles($size: 8vw);
   background-color: $itemBg;
-  border-radius: 100%;
-  width: 8vw;
-  height: 8vw;
   position: absolute;
   overflow: hidden;
   box-shadow: 0 0 8px 1px lighten($color: $iconColor, $amount: 10%);
@@ -42,7 +46,11 @@
 
 @media only screen and (max-width: 575px) {
   .wheel-item {
-    width: 8vh;
-    height: 8vh;
+    @include spinnerItemStyles($size: 21vw);
+    .container {
+      .name {
+        height: 18px;
+      }
+    }
   }
 }

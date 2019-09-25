@@ -1,21 +1,23 @@
 @import "../../vars";
 
-@mixin spinnerStyles {
-  width: 40vw;
-  height: 40vw;
+@mixin spinnerStyles($size: 40vw) {
+  width: $size;
+  height: $size;
   border-radius: 100%;
 }
 
 
 .wheel-spinner {
   position: relative;
-  @include spinnerStyles;
+  @include spinnerStyles($size: 40vw);
   @include flexCentered;
   animation: spin $spinTime linear infinite;
   @include boxShadow(inset);
   &::after {
     content: '';
-    @include spinnerStyles;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
     position: absolute;
     left: 0;
     right: 0;
@@ -26,7 +28,6 @@
 
 @media only screen and (max-width: 575px) {
   .wheel-spinner {
-    width: 37vh;
-    height: 37vh;
+    @include spinnerStyles($size: 77vw);
   }
 }
