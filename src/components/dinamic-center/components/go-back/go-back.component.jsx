@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
 const GoBack = ({ history }) => (
-  <div className="go-back" onClick={() => history.push('/')}>
+  <div className="go-back" title="&#11013;" onClick={() => history.push('/')}>
     <Icon icon="undo-alt" className="icon" />
   </div>
 );

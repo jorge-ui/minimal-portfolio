@@ -13,6 +13,10 @@ import { useTransition, animated } from 'react-spring';
 import { Route, Switch } from 'react-router-dom';
 import { easeInOutQuart } from './utils/easingFuctions';
 import { withRouter } from 'react-router-dom';
+import { wait } from './utils/utilityFunctions';
+
+const transitionDuration = 850;
+const transitionDelay = 85;
 
 function App({ location }) {
   const willNest = Boolean(location.pathname.match(/\/\w+/g));
@@ -33,7 +37,9 @@ function App({ location }) {
             <Route path="/objective" component={ObjectivePage} />
             <Route path="/portfolio" component={PortfolioPage} />
           </Switch>
-          {!window.isMobile && <Canvas active={!willNest} />}
+          {!window.isMobile && (
+            <Canvas startDelay={transitionDuration} active={!willNest} />
+          )}
         </animated.div>
       ))}
       <CenterItem />
@@ -48,7 +54,12 @@ const nestOutConfig = {
     transform: 'scale(1.0)'
   },
   enter: () => async next => {
-    await next({ transform: 'scale(3.0)', config: { duration: 100 } });
+    await next({
+      transform: 'scale(3.0)',
+      opacity: 0.01,
+      config: { duration: 100 }
+    });
+    await wait(transitionDelay);
     await next({
       opacity: 1,
       transform: 'scale(1.0)'
@@ -59,7 +70,7 @@ const nestOutConfig = {
     transform: 'scale(0.0)'
   },
   config: {
-    duration: 600,
+    duration: transitionDuration,
     easing: easeInOutQuart
   }
 };
@@ -70,7 +81,12 @@ const nestInConfig = {
     transform: 'scale(1.0)'
   },
   enter: () => async next => {
-    await next({ transform: 'scale(0.2)', config: { duration: 50 } });
+    await next({
+      transform: 'scale(0.4)',
+      opacity: 0.01,
+      config: { duration: 50 }
+    });
+    await wait(transitionDelay);
     await next({
       opacity: 1,
       transform: 'scale(1.0)'
@@ -81,7 +97,7 @@ const nestInConfig = {
     transform: 'scale(3.0)'
   },
   config: {
-    duration: 600,
+    duration: transitionDuration,
     easing: easeInOutQuart
   }
 };

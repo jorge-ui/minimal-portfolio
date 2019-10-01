@@ -7,13 +7,15 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {
   selectProjectsItems,
-  selectProjectsCurrentItem
+  selectProjectsCurrentItem,
+  selectViewedItems
 } from '../../redux/projects/projects.selectors';
 import {
   nextProject,
   previousProject
 } from '../../redux/projects/projects.actions';
 import ProjectItem from '../project-item/project-item.component';
+import { wait } from '../../utils/utilityFunctions';
 
 const delay = 100;
 
@@ -21,7 +23,8 @@ const ProjectsSlider = ({
   projectsItems,
   currentProject: currentProjectIndex,
   nextProject,
-  previousProject
+  previousProject,
+  viewedItems
 }) => {
   useEffect(() => {
     window.onkeydown = ({ keyCode }) => {
@@ -36,24 +39,32 @@ const ProjectsSlider = ({
     };
     return () => (window.onkeydown = null);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const currentProject = projectsItems[currentProjectIndex];
+  currentProject.backFaceViewed = viewedItems.includes(currentProject.id);
 
   const prev = usePrevious(currentProjectIndex);
   const isNextSlide = prev < currentProjectIndex;
 
   const transition = useTransition(
-    projectsItems[currentProjectIndex],
+    currentProject,
     item => item.id,
     isNextSlide ? nextTransitionConfig : previousTransitionConfig
   );
 
   return transition.map(({ item, key, props }) => (
-    <ProjectItem project={item} key={key} props={props} />
+    <ProjectItem
+      project={item}
+      key={key}
+      props={props}
+      backFaceViewed={item.backFaceViewed}
+    />
   ));
 };
 
 const mapStateToProps = createStructuredSelector({
   projectsItems: selectProjectsItems,
-  currentProject: selectProjectsCurrentItem
+  currentProject: selectProjectsCurrentItem,
+  viewedItems: selectViewedItems
 });
 
 const mapActionsToProps = {
@@ -143,9 +154,3 @@ const nextTransitionConfig = {
   },
   config: springConfig
 };
-
-function wait(time) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, time);
-  });
-}

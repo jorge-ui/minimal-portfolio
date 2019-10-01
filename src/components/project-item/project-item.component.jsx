@@ -3,14 +3,14 @@ import './project-item.styles.scss';
 // Components
 import ProjectFront from './project-front/project-front.component';
 // Modules
-import { easeOutCubic } from '../../utils/easingFuctions';
+import { easeInOutCubic } from '../../utils/easingFuctions';
 import { animated, useTransition } from 'react-spring';
 import ProjectBack from './project-back/project-back.component';
 
 const flipUp = 'perspective(150vw) rotateX(-180deg)';
 const flipDown = 'perspective(150vw) rotateX(180deg)';
 
-const ProjectItem = ({ project, props }) => {
+const ProjectItem = ({ project, props, backFaceViewed }) => {
   const [isViewBackface, setIsViewBackface] = useState(false);
 
   const faceTransition = useTransition(isViewBackface, null, {
@@ -28,7 +28,7 @@ const ProjectItem = ({ project, props }) => {
     },
     config: {
       duration: 600,
-      easing: easeOutCubic
+      easing: easeInOutCubic
     }
   });
 
@@ -40,6 +40,8 @@ const ProjectItem = ({ project, props }) => {
             setIsViewBackface={setIsViewBackface}
             key={key}
             props={props}
+            projectSummary={project.summary}
+            repoLink={project.repoLink}
           />
         ) : (
           <ProjectFront
@@ -47,6 +49,7 @@ const ProjectItem = ({ project, props }) => {
             key={key}
             props={props}
             project={project}
+            backFaceViewed={backFaceViewed}
           />
         )
       )}

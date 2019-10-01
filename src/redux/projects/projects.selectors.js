@@ -17,6 +17,11 @@ export const selectProjectsCurrentItem = createSelector(
   projects => projects.currentItem
 );
 
+export const selectViewedItems = createSelector(
+  [selectProjects],
+  projects => projects.viewedItems
+);
+
 export const selectDisabledArrow = createSelector(
   [selectProjectsItemsLength, selectProjectsCurrentItem],
   (itemsLength, currentItem) => {

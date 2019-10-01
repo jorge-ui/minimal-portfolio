@@ -1,9 +1,53 @@
 @import "../../../vars";
 
+$repoLinkColor: transparentize(
+  $color: darken($color: $iconColor, $amount: 10%),
+  $amount: .2
+);
+
+$exitButtonColor: rgb(103, 103, 103);
+
 .project-back {
   @include projectFace;
   background-color: rgba(80, 80, 80, .5);
+  color: white;
+  font-size: 1.3em;
+  box-sizing: border-box;
+  padding-left: 10%;
+  .head {
+    font-weight: normal;
+    align-self: flex-start;
+    font-size: 1.5em;
+    margin: 0;
+    padding-bottom: 20px;
+    svg {
+      margin-right: 10px;
+    }
+  }
+  .summary {
+    max-width: 85%;
+    align-self: flex-start;
+    text-indent: 3rem;
+    line-height: 2em;
+  }
+  .repo-link {
+    text-decoration: none;
+    color: white;
+    background-color: $repoLinkColor;
+    padding: 10px;
+    align-self: flex-end;
+    margin-right: 10%;
+    border-radius: 5px;
+    &:hover {
+      cursor: pointer;
+      background-color: darken($color: $repoLinkColor, $amount: 20%);
+    }
+    svg {
+      margin-left: 5px;
+    }
+  }
   .project-summary-exit {
-    @include flipFaceButton(darken($iconColor, 20%), lightgrey);
+    @include flipFaceButton($exitButtonColor, lightgrey);
+    opacity: .8;
   }
 }

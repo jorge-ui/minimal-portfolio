@@ -11,7 +11,7 @@ const bubblesTransition = 1 / (bubblesDurationMs * 0.06);
 const bubblesRgbColor = '129, 194, 212';
 let leaveTimeout = null;
 
-const Canvas = ({ active }) => {
+const Canvas = ({ startDelay, active }) => {
   const size = useWindowWidthAndHeight();
   const canvasRef = useRef(null);
 
@@ -28,10 +28,11 @@ const Canvas = ({ active }) => {
       setTimeout(() => {
         !isOn && requestAnimationFrame(() => renderCanvas(0));
         isOn = true;
-      }, 650);
+      }, startDelay + 50);
     } else {
-      leaveTimeout = setTimeout(() => (isOn = false), 650);
+      leaveTimeout = setTimeout(() => (isOn = false), startDelay + 50);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
   return <canvas ref={canvasRef} className="canvas" {...size}></canvas>;

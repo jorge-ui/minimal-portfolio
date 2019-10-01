@@ -134,7 +134,7 @@
   }
   .project-summary-button {
     @include flipFaceButton($iconColor);
-    &::after {
+    &[viewed=false]::after {
       content: '';
       position: absolute;
       background: radial-gradient(transparentize($iconColor, .4), $iconColor);
@@ -143,6 +143,9 @@
       width: 100%;
       height: 100%;
       animation: pulse 2.5s ease-out  infinite;
+    }
+    &[viewed=true] {
+      @include flipFaceButton(desaturate($color: $iconColor, $amount: 20%), $shadow: rgb(220, 220, 220));
     }
   }
 }

@@ -6,9 +6,23 @@ import ScreenshotsSlider from '../screenshots-slider/screenshots-slider.componen
 // Modules
 import { animated } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+// Redux
+import { connect } from 'react-redux';
+import { setProjectViewed } from '../../../redux/projects/projects.actions';
 
-const ProjectFront = ({ setIsViewBackface, project, props }) => {
+const ProjectFront = ({
+  setProjectViewed,
+  setIsViewBackface,
+  project,
+  backFaceViewed,
+  props
+}) => {
   const [isFullScreenShot, setFullScreenShot] = useState(false);
+
+  function viewBackface() {
+    setProjectViewed(project.id);
+    setIsViewBackface(true);
+  }
   return (
     <animated.div
       fullscreenshot={String(isFullScreenShot)}
@@ -22,7 +36,7 @@ const ProjectFront = ({ setIsViewBackface, project, props }) => {
         <div className="info-wraper">
           <div className="info">
             <h2 className="title">{project.title}</h2>
-            <a href="#" className="open-link">
+            <a href={project.appLink} className="open-link">
               Open <Icon icon="external-link-square-alt" />
             </a>
           </div>
@@ -53,11 +67,18 @@ const ProjectFront = ({ setIsViewBackface, project, props }) => {
           />
         </div>
       </div>
-      <div className="project-summary-button">
-        <Icon icon="info-circle" onClick={() => setIsViewBackface(true)} />
+      <div className="project-summary-button" viewed={String(backFaceViewed)}>
+        <Icon icon="info-circle" title="summary" onClick={viewBackface} />
       </div>
     </animated.div>
   );
 };
 
-export default ProjectFront;
+const mapActionsToProps = {
+  setProjectViewed
+};
+
+export default connect(
+  null,
+  mapActionsToProps
+)(ProjectFront);
