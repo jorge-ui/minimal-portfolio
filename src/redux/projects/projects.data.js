@@ -1,6 +1,6 @@
 // prettier-ignore
 const projectsData = [
-  {
+  { // Crown Clothing
     id: 1,
     title: 'Crown Clothing',
     appLink: 'http://bit.ly/open-app-crown-clothing',
@@ -38,7 +38,7 @@ const projectsData = [
       ]
     }
   },
-  {
+  { // Space Image Visualizer
     id: 2,
     title: 'Space Image Visualizer',
     appLink: 'http://bit.ly/open-app-space-visualizer',
@@ -73,7 +73,7 @@ const projectsData = [
       ]
     }
   },
-  {
+  { // Developer Connector
     id: 3,
     title: 'Developer Connector',
     appLink: 'http://bit.ly/open-app-dev-connector',
@@ -115,15 +115,15 @@ const projectsData = [
       ]
     }
   },
-  {
+  { // Burger Builder
     id: 4,
     title: 'Burger Builder',
     appLink: 'http://bit.ly/open-app-burger-builder',
     repoLink: 'https://github.com/jrdeveloper71/burger-builder',
     icon: require('../../assets/projects/burger-builder/icon.png'),
     summary: `
-      A simple and straight-forward way of customizing a burger to your liking, with easy
-      checkout, or at least that’s the goal with this app. Inspiration from a react
+      A simple and straight-forward way to customize a burger to your liking, with easy
+      checkout, that’s the goal with this app. Inspiration from a react
       course tutorial I took. I remade the app according to my vision of it.
       I focused on dynamically rendering the list of ingredients added by the user as
       the burger is being built. I struggled a bit trying to make the burger look nice,
@@ -150,7 +150,7 @@ const projectsData = [
       ]
     }
   },
-  {
+  { // My Old Portfolio
     id: 5,
     title: 'My Old Portfolio',
     appLink: 'http://bit.ly/open-app-old-portfolio',
@@ -186,7 +186,7 @@ const projectsData = [
       ]
     }
   },
-  {
+  { // The Great RGB Game
     id: 6,
     title: 'The Great RGB Game',
     appLink: 'http://bit.ly/open-app-rgb-game',

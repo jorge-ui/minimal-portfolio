@@ -83,13 +83,16 @@ const springConfig = {
   friction: 25
 };
 
+const transformXOffset = 0.35;
+
 const previousTransitionConfig = {
   initial: {
     transform: 'matrix(1, 0, 0, 1, 0, 0)',
     opacity: 1
   },
   from: {
-    transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.8},0)`,
+    transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+      (1 - transformXOffset)},0)`,
     opacity: 0
   },
   enter: item => async next => {
@@ -105,12 +108,14 @@ const previousTransitionConfig = {
   },
   leave: item => async next => {
     next({
-      transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.3},0)`
+      transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+        transformXOffset},0)`
     });
     setTimeout(
       () =>
         next({
-          transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.8},0)`,
+          transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+            (1 - transformXOffset)},0)`,
           opacity: 0
         }),
       delay
@@ -125,7 +130,8 @@ const nextTransitionConfig = {
     opacity: 1
   },
   from: {
-    transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth * 0.8},0)`,
+    transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+      (1 - transformXOffset)},0)`,
     opacity: 0
   },
   enter: item => async next => {
@@ -141,12 +147,14 @@ const nextTransitionConfig = {
   },
   leave: item => async next => {
     next({
-      transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.3},0)`
+      transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+        transformXOffset},0)`
     });
     setTimeout(
       () =>
         next({
-          transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth * 0.8},0)`,
+          transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+            (1 - transformXOffset)},0)`,
           opacity: 0
         }),
       delay

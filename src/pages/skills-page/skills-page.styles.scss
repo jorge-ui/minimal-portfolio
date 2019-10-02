@@ -1,0 +1,15 @@
+@import "../../vars";
+
+.skills-page {
+  position: relative;
+  .skill-item {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 6rem;
+    text-shadow: 0 0 15px $iconColor;
+    &:hover {
+      cursor: crosshair;
+    }
+  }
+}
