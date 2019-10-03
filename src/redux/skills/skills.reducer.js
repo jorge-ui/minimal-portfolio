@@ -1,14 +1,7 @@
+import skillsData from './skills.data';
+
 const INITIAL_STATE = {
-  items: [
-    'Effective Communicator',
-    'Problem Solver',
-    'Fast Learner',
-    'Team Player',
-    'Autodidact',
-    'Engineering Minded',
-    'Visual Designer',
-    'Music Producer'
-  ]
+  items: skillsData
 };
 const skillsReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {

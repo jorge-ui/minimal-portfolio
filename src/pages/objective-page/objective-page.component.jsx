@@ -22,7 +22,9 @@ const ObjectivePage = () => {
         marketing are all about the visuals, for the most part. So this is what
         I came to do.
       </p>
-      <blockquote>I look forward to building great things together.</blockquote>
+      <blockquote>
+        I look forward to building great experiences together.
+      </blockquote>
     </div>
   );
   const transition = useTransition(jsx.props.children, (item, i) => i, {
