@@ -1,0 +1,10 @@
+@import "../../vars";
+
+.resume-doc {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px darken($itemBg, 20% );
+  span {
+    transform: none !important
+  }
+}

@@ -15,6 +15,11 @@ const DinamicCenter = ({ pathname, setCenterXy }) => {
     case '/objective':
       setCenterXy([null, '85%']);
       return <GoBack />;
+    case '/skills':
+      return <GoBack />;
+    case '/resume':
+      setCenterXy(['15%', '50%']);
+      return <GoBack />;
     case '/portfolio':
       setCenterXy([null, '92%']);
       return <GoBack />;
