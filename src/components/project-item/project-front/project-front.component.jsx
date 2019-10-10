@@ -36,7 +36,12 @@ const ProjectFront = ({
         <div className="info-wraper">
           <div className="info">
             <h2 className="title">{project.title}</h2>
-            <a href={project.appLink} className="open-link">
+            <a
+              href={project.appLink}
+              className="open-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Open <Icon icon="external-link-square-alt" />
             </a>
           </div>

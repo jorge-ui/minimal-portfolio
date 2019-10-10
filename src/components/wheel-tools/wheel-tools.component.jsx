@@ -4,6 +4,7 @@ import './wheel-tools.styles.scss';
 import WheelTool from '../wheel-tool/wheel-tool.component';
 // Modules
 import { useTransition } from 'react-spring';
+import { checkMobile } from '../../utils/utilityFunctions';
 // Redux
 import { connect } from 'react-redux';
 import { clearShowingTool } from '../../redux/tools/tools.actions';
@@ -13,11 +14,14 @@ const transitionDelay = 300;
 const transitionTrial = 50;
 
 const WheelTools = ({ children, clearShowingTool }) => {
+  const isMobile = checkMobile();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => clearShowingTool(), []);
 
   const { length } = children;
-  const radius = window.innerWidth * 0.2;
+  const radius = isMobile
+    ? window.screen.availHeight * 0.225
+    : window.innerWidth * 0.2;
 
   const positionedChildren = children.map((child, index) => {
     let theta = fullCircle * (index / length);

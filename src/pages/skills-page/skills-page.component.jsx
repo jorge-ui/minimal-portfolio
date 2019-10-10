@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import './skills-page.styles.scss';
 // Modules
 import { animated, useTransition } from 'react-spring';
-import { wait } from '../../utils/utilityFunctions';
+import { wait, checkMobile } from '../../utils/utilityFunctions';
+import useWindowWidthAndHeight from '../../utils/useWindowWidthAndHeight';
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -16,6 +17,8 @@ const enterDelay = 350;
 let canvas, ctx, canvasItems;
 
 const SkillsPage = ({ skillsItems }) => {
+  const canvasSize = useWindowWidthAndHeight();
+
   useEffect(() => {
     startCanvas();
     return () => (positionsArray = {});
@@ -53,11 +56,7 @@ const SkillsPage = ({ skillsItems }) => {
           {item.skillName}
         </animated.div>
       ))}
-      <canvas
-        className="skills-canvas"
-        width={window.innerWidth}
-        height={window.innerHeight}
-      />
+      <canvas className="skills-canvas" {...canvasSize} />
     </div>
   );
 };
@@ -69,8 +68,9 @@ const mapStateToProps = createStructuredSelector({
 export default connect(mapStateToProps)(SkillsPage);
 
 function initPositions(skillsItems) {
+  const isMobile = checkMobile();
   const { length } = skillsItems;
-  const radius = window.innerWidth * 0.2;
+  const radius = isMobile ? window.innerWidth * 0.3 : window.innerWidth * 0.2;
 
   skillsItems.forEach((skill, index) => {
     let theta = fullCircle * (index / length);
@@ -98,7 +98,7 @@ const transitionConfig = {
   }
 };
 
-function startCanvas(skillsItems) {
+function startCanvas() {
   canvas = document.querySelector('.skills-canvas');
   ctx = canvas.getContext('2d');
   canvasItems = document.querySelectorAll('.skill-item');
@@ -109,7 +109,8 @@ function canvasFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   canvasItems.forEach(({ style: { left, top } }) => {
     let x = window.innerWidth / 2 + Number(left.slice(0, left.length - 2));
-    let y = window.innerHeight / 2 + Number(top.slice(0, top.length - 2));
+    let y =
+      window.screen.availHeight / 2 + Number(top.slice(0, top.length - 2));
     drawLine(x, y);
   });
 

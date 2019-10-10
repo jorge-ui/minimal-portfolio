@@ -1,8 +1,11 @@
 import React from 'react';
 import './wheel-tool.styles.scss';
+// Modules
 import { animated } from 'react-spring';
+import { checkMobile } from '../../utils/utilityFunctions';
 // Redux
 import { connect } from 'react-redux';
+import { createToolIsShowingSelector } from '../../redux/tools/tools.selectors';
 import {
   setShowingTool,
   clearShowingTool
@@ -13,13 +16,15 @@ const WheelTool = ({
   props,
   item,
   setShowingTool,
-  clearShowingTool
+  clearShowingTool,
+  isShowing
 }) => {
   const { logo, name, background } = item;
+  const isMobile = checkMobile();
 
   function showTool() {
     if (!props.opacity.done) return;
-    clearTimeout(window.clearToolTimeout);
+    !isMobile && clearTimeout(window.clearToolTimeout);
     setShowingTool(item);
   }
   function clearTool() {
@@ -27,23 +32,39 @@ const WheelTool = ({
     window.clearToolTimeout = setTimeout(clearShowingTool, 350);
   }
 
+  const showToolHandlers = isMobile
+    ? {
+        onTouchStart: !isShowing ? showTool : null
+      }
+    : {
+        onMouseEnter: showTool,
+        onMouseLeave: clearTool
+      };
   return (
     <animated.div
       className="wheel-tool"
+      is-showing={String(isShowing)}
       style={{
         ...props,
         transform: position.interpolate((x, y) => `translate(${x}px, ${y}px)`),
         background
       }}
-      onMouseEnter={showTool}
-      onMouseLeave={clearTool}
+      {...showToolHandlers}
     >
       <div className="container">
         <img className="logo" src={logo} alt={`${name}-logo`} />
+        <div
+          className="close-tool-info-button"
+          onTouchStart={clearShowingTool}
+        />
       </div>
     </animated.div>
   );
 };
+
+const mapStateToProps = (state, { item: { id } }) => ({
+  isShowing: createToolIsShowingSelector(id)(state)
+});
 
 const mapActionsToProps = {
   setShowingTool,
@@ -51,6 +72,6 @@ const mapActionsToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionsToProps
 )(WheelTool);

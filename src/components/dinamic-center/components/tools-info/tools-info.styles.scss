@@ -7,17 +7,40 @@
   width: 100%;
   height: 100%;
   .name {
+    font-size: 1.2em;
     @include flexCentered;
-    height: 40%;
+    height: 35%;
     font-weight: normal;
     margin: 0;
   }
   .description   {
+    margin-top: -10px;
+    font-size: 1em;
     height: 60%;
     width: 80%;
     font-weight: normal;
   }
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .tools-info {
+    .name {
+      height: 15%;
+    }
+    .description   {
+      margin-top: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .tools-info {
+    font-size: .85rem;
+    .name {
+      margin-top: -20px;
+    }
   }
 }

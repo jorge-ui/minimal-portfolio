@@ -1,21 +1,26 @@
 @import "../../vars";
 
+$desktopSize: 8vw;
+$mobileSize: 9vh;
+
 .wheel-tool {
   @include flexCentered;
   background-color: white;
   border-radius: 100%;
-  width: 8vw;
-  height: 8vw;
+  width: $desktopSize;
+  height: $desktopSize;
   position: absolute;
   overflow: hidden;
   box-shadow: 0 0 10px transparentize($iconColor, .7);
   transition: background-color 300ms ease-out;
   .container {
+    position: relative;
     @include flexCentered;
     flex-direction: column;
     animation: spin $spinTime linear infinite reverse;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     .logo {
       display: block;
       height: 70%;
@@ -29,12 +34,37 @@
       height: 0;
       transition: height 300ms;
     }
+    .close-tool-info-button {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparentize($color: $iconColor, $amount: .3);
+      z-index: 1;
+      color: rgb(211, 23, 23);
+      &::before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -55%) scale(1.3);
+        content: '\274C';
+        text-align: center;
+        text-shadow: 0 0 3px rgb(255, 255, 255);
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 575px) {
   .wheel-tool {
-    width: 8vh;
-    height: 8vh;
+    width: $mobileSize;
+    height: $mobileSize;
+    &[is-showing=true] {
+      .close-tool-info-button {
+        display: block;
+      }
+    }
   }
 }

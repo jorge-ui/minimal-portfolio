@@ -11,3 +11,9 @@ export const selectToolShowing = createSelector(
   [selectTools],
   tools => tools.showing
 );
+
+export const createToolIsShowingSelector = id =>
+  createSelector(
+    [selectToolShowing],
+    toolShown => (toolShown ? toolShown.id === id : false)
+  );
