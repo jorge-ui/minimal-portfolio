@@ -2,35 +2,23 @@ import React, { useState } from 'react';
 import './project-item.styles.scss';
 // Components
 import ProjectFront from './project-front/project-front.component';
+import ProjectBack from './project-back/project-back.component';
 // Modules
 import { easeInOutCubic } from '../../utils/easingFuctions';
 import { animated, useTransition } from 'react-spring';
-import ProjectBack from './project-back/project-back.component';
 
-const flipUp = 'perspective(150vw) rotateX(-180deg)';
-const flipDown = 'perspective(150vw) rotateX(180deg)';
+const flipUp = axis => `perspective(150vw) rotate${axis}(-180deg)`;
+const flipDown = axis => `perspective(150vw) rotate${axis}(180deg)`;
 
 const ProjectItem = ({ project, props, backFaceViewed }) => {
+  const rotateAxis = window.isMobile() ? 'Y' : 'X';
   const [isViewBackface, setIsViewBackface] = useState(false);
 
-  const faceTransition = useTransition(isViewBackface, null, {
-    initial: {
-      transform: 'perspective(0vw) rotateX(0deg)'
-    },
-    from: {
-      transform: isViewBackface ? flipUp : flipDown
-    },
-    enter: {
-      transform: 'perspective(150vw) rotateX(0deg)'
-    },
-    leave: {
-      transform: isViewBackface ? flipDown : flipUp
-    },
-    config: {
-      duration: 600,
-      easing: easeInOutCubic
-    }
-  });
+  const faceTransition = useTransition(
+    isViewBackface,
+    null,
+    getTransitionConfig(rotateAxis, isViewBackface)
+  );
 
   return (
     <animated.div className="project-item" style={props}>
@@ -58,3 +46,22 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
 };
 
 export default ProjectItem;
+
+const getTransitionConfig = (rotateAxis, isViewBackface) => ({
+  initial: {
+    transform: `perspective(0vw) rotate${rotateAxis}(0deg)`
+  },
+  from: {
+    transform: isViewBackface ? flipUp(rotateAxis) : flipDown(rotateAxis)
+  },
+  enter: {
+    transform: 'perspective(150vw) rotateX(0deg)'
+  },
+  leave: {
+    transform: isViewBackface ? flipDown(rotateAxis) : flipUp(rotateAxis)
+  },
+  config: {
+    duration: 600,
+    easing: easeInOutCubic
+  }
+});

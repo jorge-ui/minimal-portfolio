@@ -1,9 +1,8 @@
 import { SET_SHOWING_TOOL, CLEAR_SHOWING_TOOL } from './tools.types';
 import { setCenterSize, resetCenterSize } from '../center/center.actions';
-import { checkMobile } from '../../utils/utilityFunctions';
 
 export const setShowingTool = tool => dispatch => {
-  const isMobile = checkMobile();
+  const isMobile = window.isMobile();
   const toolInfoSize = isMobile ? '64vw' : '25vw';
   dispatch(setCenterSize(toolInfoSize));
   dispatch({

@@ -2,7 +2,6 @@ import React from 'react';
 import './wheel-tool.styles.scss';
 // Modules
 import { animated } from 'react-spring';
-import { checkMobile } from '../../utils/utilityFunctions';
 // Redux
 import { connect } from 'react-redux';
 import { createToolIsShowingSelector } from '../../redux/tools/tools.selectors';
@@ -20,7 +19,7 @@ const WheelTool = ({
   isShowing
 }) => {
   const { logo, name, background } = item;
-  const isMobile = checkMobile();
+  const isMobile = window.isMobile();
 
   function showTool() {
     if (!props.opacity.done) return;

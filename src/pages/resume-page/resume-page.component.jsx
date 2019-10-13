@@ -7,7 +7,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const ResumePage = () => {
-  const isMobile = window.innerWidth < 576;
+  const isMobile = window.isMobile();
   const [pdf, setPdf] = useState(null);
 
   useEffect(() => {

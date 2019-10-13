@@ -51,3 +51,65 @@ $exitButtonColor: rgb(103, 103, 103);
     opacity: .8;
   }
 }
+
+@media only screen and (max-width: 575px) {
+  .project-back {
+    display: block;
+    padding-top: 50px;
+    padding-left: 8%;
+    .head {
+      font-size: 1.5em;
+      padding-bottom: 5px;
+    }
+    .summary {
+      max-width: 90%;
+      text-align: justify;
+      text-indent: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.2em;
+
+    }
+    .repo-link {
+      float: right;
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .project-back {
+    padding-top: 25px;
+    .summary {
+      font-size: 1.05rem;
+    }
+    .repo-link {
+      float: right;
+    }
+  }
+}
+
+@media only screen and (max-width: 325px) {
+  .project-back {
+    position: relative;
+    padding-top: 15px;
+    .head {
+      font-size: 1.2em;
+      margin-bottom: -10px;
+    }
+    .summary {
+      font-size: 1rem;
+    }
+    .repo-link {
+      font-size: 1rem;
+      float: unset;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      padding: 3px;
+    }
+    .project-summary-exit {
+      width: 65px;
+      height: 65px;
+    }
+  }
+}

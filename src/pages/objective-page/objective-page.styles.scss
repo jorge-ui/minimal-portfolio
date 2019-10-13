@@ -46,11 +46,17 @@
 
 @media only screen and (max-width: 575px) {
   .objective-page {
-    font-size: 1.1em;
+    font-size: 1rem;
     padding: 0 6vw;
-    padding-top: 10vh;
+    padding-top: 0vh;
     p {
+      text-align: justify;
       text-indent: 1.3em;
+      margin-top: 0;
+    }
+    blockquote {
+      margin-right: 0;
+      hyphens: none;
     }
   }
 }
@@ -59,9 +65,16 @@
   .objective-page {
     font-size: 1em;
     padding: 0 5vw;
-    padding-top: 10vh;
-    & > * {
-      margin: 5px 0;
+    padding-top: 0vh;
+    margin-top: -10px;
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 0;
+      margin-bottom: 5px;
+      line-height: 1.4;
     }
   }
 }

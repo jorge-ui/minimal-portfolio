@@ -1,13 +1,11 @@
 import React from 'react';
 import './tools-info.styles.scss';
-// Modules
-import { checkMobile } from '../../../../utils/utilityFunctions';
 // Redux
 import { connect } from 'react-redux';
 import { clearShowingTool } from '../../../../redux/tools/tools.actions';
 
 const ToolsInfo = ({ item, clearShowingTool }) => {
-  const isMobile = checkMobile();
+  const isMobile = window.isMobile();
   const clearShowingToolHandlers = isMobile
     ? {
         onClick: clearShowingTool

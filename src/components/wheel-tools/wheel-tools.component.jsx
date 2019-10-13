@@ -4,7 +4,6 @@ import './wheel-tools.styles.scss';
 import WheelTool from '../wheel-tool/wheel-tool.component';
 // Modules
 import { useTransition } from 'react-spring';
-import { checkMobile } from '../../utils/utilityFunctions';
 // Redux
 import { connect } from 'react-redux';
 import { clearShowingTool } from '../../redux/tools/tools.actions';
@@ -14,7 +13,7 @@ const transitionDelay = 300;
 const transitionTrial = 50;
 
 const WheelTools = ({ children, clearShowingTool }) => {
-  const isMobile = checkMobile();
+  const isMobile = window.isMobile();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => clearShowingTool(), []);
 

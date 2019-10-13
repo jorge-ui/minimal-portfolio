@@ -9,19 +9,23 @@ import { connect } from 'react-redux';
 import { setCenterXy } from '../../redux/center/center.actions';
 
 const DinamicCenter = ({ pathname, setCenterXy }) => {
+  let centerXy = [];
+  const isMobile = window.isMobile();
   switch (pathname) {
     case '/tools':
       return <ToolsCenter />;
     case '/objective':
-      setCenterXy([null, '85%']);
+      setCenterXy([null, '83%']);
       return <GoBack />;
     case '/skills':
       return <GoBack />;
     case '/resume':
-      setCenterXy(['15%', '50%']);
+      centerXy = isMobile ? ['20%', '79%'] : ['15%', '50%'];
+      setCenterXy(centerXy);
       return <GoBack />;
     case '/portfolio':
-      setCenterXy([null, '92%']);
+      centerXy = isMobile ? ['8.5%', '82%'] : [null, '92%'];
+      setCenterXy(centerXy);
       return <GoBack />;
     default:
       return (

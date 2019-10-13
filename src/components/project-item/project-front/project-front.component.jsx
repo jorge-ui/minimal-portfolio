@@ -17,12 +17,41 @@ const ProjectFront = ({
   backFaceViewed,
   props
 }) => {
+  const isMobile = window.isMobile();
   const [isFullScreenShot, setFullScreenShot] = useState(false);
 
   function viewBackface() {
     setProjectViewed(project.id);
     setIsViewBackface(true);
   }
+
+  let details = (
+    <>
+      <div className="info-tools-wraper">
+        {!isFullScreenShot && (
+          <div className="info-tools">
+            <h3>
+              <Icon icon="tools" /> Built using:
+            </h3>
+            <ProjectToolsList tools={project.tools} />
+          </div>
+        )}
+      </div>
+      <div className="vhr" />
+      <div className="info-screenshots">
+        <h3>
+          <Icon icon="images" />
+          Screenshots:
+        </h3>
+        <ScreenshotsSlider
+          isFullScreenShot={isFullScreenShot}
+          screenshots={project.screenshots}
+          setFullScreenShot={setFullScreenShot}
+        />
+      </div>
+    </>
+  );
+
   return (
     <animated.div
       fullscreenshot={String(isFullScreenShot)}
@@ -49,28 +78,7 @@ const ProjectFront = ({
       </div>
       <div className="hr" />
       <div className="details">
-        <div className="info-tools-wraper">
-          {!isFullScreenShot && (
-            <div className="info-tools">
-              <h3>
-                <Icon icon="tools" /> Built using:
-              </h3>
-              <ProjectToolsList tools={project.tools} />
-            </div>
-          )}
-        </div>
-        <div className="vhr" />
-        <div className="info-screenshots">
-          <h3>
-            <Icon icon="images" />
-            Screenshots:
-          </h3>
-          <ScreenshotsSlider
-            isFullScreenShot={isFullScreenShot}
-            screenshots={project.screenshots}
-            setFullScreenShot={setFullScreenShot}
-          />
-        </div>
+        {isMobile ? [...details.props.children].reverse() : details}
       </div>
       <div className="project-summary-button" viewed={String(backFaceViewed)}>
         <Icon icon="info-circle" title="summary" onClick={viewBackface} />

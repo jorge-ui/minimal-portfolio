@@ -3,7 +3,3 @@ export function wait(time) {
     setTimeout(resolve, time);
   });
 }
-
-export function checkMobile() {
-  return window.innerWidth < 576;
-}

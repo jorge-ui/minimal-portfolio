@@ -22,13 +22,13 @@ $itemBg: rgb(250, 250, 250);
   overflow: hidden;
 }
 
-@mixin flipFaceButton($color: black, $shadow: white) {
+@mixin flipFaceButton($color: $iconColor, $shadow: white, $size: 80px) {
   @include flexCentered;
     position: absolute;
     top: 0;
     right: 0;
-    width: 80px;
-    height: 80px;
+    width: $size;
+    height: $size;
     svg {
       width: 50%;
       height: 50%;

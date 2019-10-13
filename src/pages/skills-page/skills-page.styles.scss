@@ -1,10 +1,12 @@
 @import "../../vars";
 
 $bubbleSize: 15vw;
+$mobileBubbleSize: 30vw;
 
 .skills-page {
   position: relative;
   .skill-item {
+    @include flexCentered;
     font-size: 1.3em;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -23,6 +25,9 @@ $bubbleSize: 15vw;
       background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,0) 100%);
       z-index: -1;
     }
+    .skill-name {
+      width: fit-content;
+    }
   }
   .skills-canvas {
     position: absolute;
@@ -34,6 +39,12 @@ $bubbleSize: 15vw;
 
 @media only screen and (max-width: 575px) {
   .skills-page {
-    
+    .skill-item {
+      font-size: 1.2em;
+      &::after {
+        width: $mobileBubbleSize;
+        height: $mobileBubbleSize;
+      }
+    }
   }
 }

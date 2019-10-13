@@ -60,26 +60,26 @@ const ScreenshotsSlider = ({
               </div>
             </div>
           </div>
-        </div>
-        <div className="device-toggler">
-          <div className="device-icons">
-            <div
-              className="device-icon"
-              toggled={String(!viewMobile)}
-              onClick={() => setViewMobile(false)}
-              title="desktop"
-            >
-              <Icon icon="desktop" />
+          <div className="device-toggler">
+            <div className="device-icons">
+              <div
+                className="device-icon"
+                toggled={String(!viewMobile)}
+                onClick={() => setViewMobile(false)}
+                title="desktop"
+              >
+                <Icon icon="desktop" />
+              </div>
+              <div
+                className="device-icon"
+                toggled={String(viewMobile)}
+                onClick={() => setViewMobile(true)}
+                title="mobile"
+              >
+                <Icon icon="mobile-alt" />
+              </div>
+              <div className="device-selected" mobile={String(viewMobile)} />
             </div>
-            <div
-              className="device-icon"
-              toggled={String(viewMobile)}
-              onClick={() => setViewMobile(true)}
-              title="mobile"
-            >
-              <Icon icon="mobile-alt" />
-            </div>
-            <div className="device-selected" mobile={String(viewMobile)} />
           </div>
         </div>
       </div>

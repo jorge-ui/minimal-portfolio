@@ -150,6 +150,74 @@
   }
 }
 
+@media only screen and (max-width: 575px) {
+  .project-front {
+    &[fullscreenshot=true] {
+      .details {
+        display: flex;
+        flex-direction: column;
+        .info-screenshots {
+          flex: 1;
+        }
+      }
+    }
+    .header {
+      flex: .8;
+      .image-wraper {
+        width: 30%;
+        margin: 0;
+        .image {
+          width: 80%;
+        }
+      }
+      .info-wraper {
+        .info {
+          .title {
+            font-size: 1.45rem;
+          }
+        }
+      }
+    }
+    .hr {
+      display: none;
+    }
+    .details {
+      display: block;
+      overflow-y: scroll;
+      height: fit-content;
+      h3 {
+        padding-left: 20px;
+      }
+      .info-tools-wraper {
+        margin-top: 10px;
+        flex: unset;
+        overflow: visible;
+        height: fit-content;
+        .info-tools {
+          position: relative;
+          height: fit-content;
+        }
+      }
+      .info-screenshots {
+        flex: unset;
+        height: 35vh;
+      }
+    }
+    .vhr {
+      display: none;
+    }
+    .project-summary-button {
+      @include flipFaceButton($color: $iconColor, $shadow: white, $size: 65px);
+      margin-right: 10px;
+      &[viewed=true] {
+        &[viewed=true] {
+          @include flipFaceButton(desaturate($color: $iconColor, $amount: 20%), $shadow: rgb(220, 220, 220), $size: 65px);
+        }
+      }
+    }
+  }
+}
+
 @keyframes pulse {
   0% {
     transform: scale(.5);

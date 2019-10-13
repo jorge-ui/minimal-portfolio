@@ -1,9 +1,9 @@
 export default [
-  'Great Communicator',
-  'Problem Solver',
   'Fast Learner',
-  'Team Player',
+  'Problem Solver',
+  'Great Communicator',
   'Autodidact',
+  'Team Player',
   'Engineering Minded',
   'Visual Designer',
   'Music Producer'

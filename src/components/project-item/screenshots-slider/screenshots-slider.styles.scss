@@ -2,6 +2,7 @@
 
 $deviceTogglerBg: rgb(189, 189, 189);
 $lateralArrowsOffset: 20px;
+$easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1);
 
 .screenshots-slider {
   $containerWidth: 70%;
@@ -17,7 +18,7 @@ $lateralArrowsOffset: 20px;
       position: relative;
       width: $containerWidth;
       margin: 0 auto;
-      transition: transform 450ms cubic-bezier(0.215, 0.610, 0.355, 1);
+      transition: transform 450ms $easeOutCubic;
       &[is-mobile=true] {
         transform: scaleX(0.31641);
         .screenshot-item-wraper {
@@ -26,6 +27,9 @@ $lateralArrowsOffset: 20px;
               transform: scale(3, 1.2);
             }
           }
+        }
+        .device-toggler {
+          transform: scaleX(3);
         }
       }
       &[is-fullscreen=true] {
@@ -114,6 +118,7 @@ $lateralArrowsOffset: 20px;
     background-color: $deviceTogglerBg;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    transition: transform 450ms $easeOutCubic;
     .device-icons {
       position: relative;
       width: 100%;
@@ -170,4 +175,49 @@ $lateralArrowsOffset: 20px;
       clip-path: polygon(100% 0, 65% 15%, 43% 28%, 28% 43%, 15% 65%, 0 100%, 0 0);
     }
   }  
+}
+
+@media only screen and (max-width: 575px) {
+  .screenshots-slider {
+    .screenshots-container-wraper {
+      .screenshots-container {
+        $containerWidth: 80%;
+        &[is-fullscreen=true] {
+          width: $containerWidth * 1.05;
+          &[is-mobile=true] {
+            transform: scaleX(0.31641) scale(2.5);
+            .screenshot-item-wraper {
+              .arrows {
+                svg {
+                  transform: scale(3, 1.2);
+                }
+              }
+            }
+          }
+        }
+        &[is-mobile=true] {
+          .device-toggler {
+            transform: scale(2.92, 1.1) translateY(2px);
+            &::before {
+              display: none;
+            }
+            &::after {
+              display: none;
+            }
+          }
+          &[is-fullscreen=true] {
+            .device-toggler {
+              transform: scale(1.4, .45) translateY(-14px);
+              &::before {
+                display: block;
+              }
+              &::after {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

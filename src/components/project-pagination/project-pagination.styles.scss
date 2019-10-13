@@ -38,3 +38,12 @@
     }
   }
 }
+
+@media only screen and (max-width: 575px) {
+  .project-pagination {
+    top: 82.5%;
+    .pagination-item {
+      width: 9vw;
+    }
+  }
+}

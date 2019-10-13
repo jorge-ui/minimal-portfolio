@@ -41,7 +41,7 @@ function App({ location }) {
             <Route path="/objective" component={ObjectivePage} />
             <Route path="/portfolio" component={PortfolioPage} />
           </Switch>
-          {!window.isMobile && (
+          {!window.isMobile() && (
             <Canvas startDelay={transitionDuration} active={!willNest} />
           )}
         </animated.div>

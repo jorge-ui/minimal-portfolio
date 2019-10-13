@@ -17,8 +17,6 @@ import {
 import ProjectItem from '../project-item/project-item.component';
 import { wait } from '../../utils/utilityFunctions';
 
-const delay = 100;
-
 const ProjectsSlider = ({
   projectsItems,
   currentProject: currentProjectIndex,
@@ -48,7 +46,7 @@ const ProjectsSlider = ({
   const transition = useTransition(
     currentProject,
     item => item.id,
-    isNextSlide ? nextTransitionConfig : previousTransitionConfig
+    getTransitionConfig(isNextSlide)
   );
 
   return transition.map(({ item, key, props }) => (
@@ -77,88 +75,58 @@ export default connect(
   mapActionsToProps
 )(ProjectsSlider);
 
-const springConfig = {
-  clamp: true,
-  tension: 180,
-  friction: 25
-};
-
+const delayTransform = 100;
 const transformXOffset = 0.35;
 
-const previousTransitionConfig = {
-  initial: {
-    transform: 'matrix(1, 0, 0, 1, 0, 0)',
-    opacity: 1
-  },
-  from: {
-    transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
-      (1 - transformXOffset)},0)`,
-    opacity: 0
-  },
-  enter: item => async next => {
-    await wait(delay);
-    next({ transform: 'matrix(0.7,0.00,0.00,0.7,0,0)', opacity: 1 });
-    setTimeout(
-      () =>
-        next({
-          transform: 'matrix(1, 0, 0, 1, 0, 0)'
-        }),
-      delay * 2
-    );
-  },
-  leave: item => async next => {
-    next({
-      transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
-        transformXOffset},0)`
-    });
-    setTimeout(
-      () =>
-        next({
-          transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
-            (1 - transformXOffset)},0)`,
-          opacity: 0
-        }),
-      delay
-    );
-  },
-  config: springConfig
-};
+const initialTransform = 'matrix(1, 0, 0, 1, 0, 0)';
+const enterTransform = 'matrix(0.7,0.00,0.00,0.7,0,0)';
 
-const nextTransitionConfig = {
+const nextTransform = `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+  (1 - transformXOffset)},0)`;
+const nextLeaveTransform = `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+  transformXOffset},0)`;
+
+const previousTransform = `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+  (1 - transformXOffset)},0)`;
+const previousLeaveTransform = `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+  transformXOffset},0)`;
+
+const getTransitionConfig = isNext => ({
   initial: {
-    transform: 'matrix(1, 0, 0, 1, 0, 0)',
+    transform: initialTransform,
     opacity: 1
   },
   from: {
-    transform: `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
-      (1 - transformXOffset)},0)`,
+    transform: isNext ? nextTransform : previousTransform,
     opacity: 0
   },
-  enter: item => async next => {
-    await wait(delay);
-    next({ transform: 'matrix(0.7,0.00,0.00,0.7,0,0)', opacity: 1 });
+  enter: () => async next => {
+    await wait(delayTransform);
+    next({ transform: enterTransform, opacity: 1 });
     setTimeout(
       () =>
         next({
-          transform: 'matrix(1, 0, 0, 1, 0, 0)'
+          transform: initialTransform
         }),
-      delay * 2
+      delayTransform * 2
     );
   },
-  leave: item => async next => {
+  leave: () => async next => {
     next({
-      transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
-        transformXOffset},0)`
+      transform: isNext ? nextLeaveTransform : previousLeaveTransform
     });
     setTimeout(
       () =>
         next({
-          transform: `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
-            (1 - transformXOffset)},0)`,
+          transform: isNext ? previousTransform : nextTransform,
           opacity: 0
         }),
-      delay
+      delayTransform
     );
   },
-  config: springConfig
-};
+  config: {
+    clamp: true,
+    tension: 180,
+    friction: 25
+  }
+});
