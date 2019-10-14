@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './resume-page.styles.scss';
 import { Document, Page, pdfjs } from 'react-pdf';
-import pdfFile from '../../assets/ResumeFile.pdf';
+import pdfFile from '../../assets/JorgeRivera-Resume.pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;

@@ -68,7 +68,7 @@ const transitionConfig = {
     transform: 'rotateY(180deg)'
   },
   config: {
-    friction: 15,
+    friction: 35,
     mass: 2
   }
 };

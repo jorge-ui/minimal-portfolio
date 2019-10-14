@@ -4,20 +4,23 @@ import './project-item.styles.scss';
 import ProjectFront from './project-front/project-front.component';
 import ProjectBack from './project-back/project-back.component';
 // Modules
-import { easeInOutCubic } from '../../utils/easingFuctions';
+import { easeOutCubic, easeInCubic } from '../../utils/easingFuctions';
 import { animated, useTransition } from 'react-spring';
-
-const flipUp = axis => `perspective(150vw) rotate${axis}(-180deg)`;
-const flipDown = axis => `perspective(150vw) rotate${axis}(180deg)`;
 
 const ProjectItem = ({ project, props, backFaceViewed }) => {
   const rotateAxis = window.isMobile() ? 'Y' : 'X';
   const [isViewBackface, setIsViewBackface] = useState(false);
+  const [transitionIsRested, setTransitionIsRested] = useState(false);
 
   const faceTransition = useTransition(
     isViewBackface,
-    null,
-    getTransitionConfig(rotateAxis, isViewBackface)
+    isViewBackface,
+    getTransitionConfig(
+      rotateAxis,
+      isViewBackface,
+      transitionIsRested,
+      setTransitionIsRested
+    )
   );
 
   return (
@@ -25,7 +28,9 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
       {faceTransition.map(({ item, props, key }) =>
         item ? (
           <ProjectBack
-            setIsViewBackface={setIsViewBackface}
+            setIsViewBackface={val => {
+              if (props.transform.payload[0].done) setIsViewBackface(val);
+            }}
             key={key}
             props={props}
             projectSummary={project.summary}
@@ -33,7 +38,9 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
           />
         ) : (
           <ProjectFront
-            setIsViewBackface={setIsViewBackface}
+            setIsViewBackface={val => {
+              if (props.transform.payload[0].done) setIsViewBackface(val);
+            }}
             key={key}
             props={props}
             project={project}
@@ -47,21 +54,94 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
 
 export default ProjectItem;
 
-const getTransitionConfig = (rotateAxis, isViewBackface) => ({
+const getRotationTransform = (axis, deg = 180, scale = 1) =>
+  `perspective(150vw) rotate${axis}(${deg}deg) scale(${scale})`;
+
+const transformationDuration = 300;
+const halfWayTransformationAlngle = 80;
+const halfWayScale = 0.7;
+
+const getTransitionConfig = (
+  rotateAxis,
+  isViewBackface,
+  transitionIsRested,
+  setTransitionIsRested
+) => ({
   initial: {
-    transform: `perspective(0vw) rotate${rotateAxis}(0deg)`
+    transform: `perspective(150vw) rotate${rotateAxis}(0deg) scale(1.0)`
   },
   from: {
-    transform: isViewBackface ? flipUp(rotateAxis) : flipDown(rotateAxis)
+    transform: getRotationTransform(rotateAxis, isViewBackface ? -180 : 180),
+    opacity: 1
   },
-  enter: {
-    transform: 'perspective(150vw) rotateX(0deg)'
+  enter: transitionIsRested
+    ? () => async next => {
+        await next({
+          transform: getRotationTransform(
+            rotateAxis,
+            isViewBackface
+              ? -halfWayTransformationAlngle
+              : halfWayTransformationAlngle,
+            halfWayScale
+          ),
+          config: {
+            duration: transformationDuration,
+            easing: easeInCubic
+          }
+        });
+        await next({
+          transform: getRotationTransform(rotateAxis, 0),
+          config: {
+            duration: transformationDuration,
+            easing: easeOutCubic
+          }
+        });
+      }
+    : () => async next => {
+        await next({
+          transform: getRotationTransform(rotateAxis, 0),
+          config: {
+            duration: transformationDuration,
+            easing: easeOutCubic
+          }
+        });
+      },
+  leave: () => async next => {
+    await next({
+      transform: getRotationTransform(
+        rotateAxis,
+        !isViewBackface
+          ? -halfWayTransformationAlngle
+          : halfWayTransformationAlngle,
+        halfWayScale
+      ),
+      config: {
+        duration: transformationDuration,
+        easing: easeInCubic
+      }
+    });
+    await next({
+      transform: getRotationTransform(rotateAxis, !isViewBackface ? -180 : 180),
+      opacity: 0,
+      config: {
+        duration: transformationDuration,
+        easing: easeOutCubic
+      }
+    });
   },
-  leave: {
-    transform: isViewBackface ? flipDown(rotateAxis) : flipUp(rotateAxis)
+  onRest: () => {
+    if (!isViewBackface) disableSummaryButtonPointerEvents(false);
+    return setTransitionIsRested(true);
   },
-  config: {
-    duration: 600,
-    easing: easeInOutCubic
+  onStart: (val, state) => {
+    if (transitionIsRested && state === 'leave') {
+      disableSummaryButtonPointerEvents();
+    }
   }
 });
+
+function disableSummaryButtonPointerEvents(val = true) {
+  document.querySelector(
+    '.project-summary-button > svg'
+  ).style.pointerEvents = val ? 'none' : 'initial';
+}

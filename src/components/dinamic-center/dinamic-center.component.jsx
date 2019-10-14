@@ -4,6 +4,7 @@ import './dinamic-center.styles.scss';
 import ToolsCenter from './components/tools-center/tools-center.component';
 import GoBack from './components/go-back/go-back.component';
 import mePic from '../../assets/me.jpg';
+import DownloadPdfButton from './components/download-pdf-button/download-pdf-button.component';
 // Redux
 import { connect } from 'react-redux';
 import { setCenterXy } from '../../redux/center/center.actions';
@@ -22,7 +23,12 @@ const DinamicCenter = ({ pathname, setCenterXy }) => {
     case '/resume':
       centerXy = isMobile ? ['20%', '79%'] : ['15%', '50%'];
       setCenterXy(centerXy);
-      return <GoBack />;
+      return (
+        <>
+          <GoBack />
+          <DownloadPdfButton />
+        </>
+      );
     case '/portfolio':
       centerXy = isMobile ? ['8.5%', '82%'] : [null, '92%'];
       setCenterXy(centerXy);

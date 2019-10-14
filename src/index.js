@@ -22,7 +22,8 @@ import {
   faInfoCircle,
   faSignOutAlt,
   faCalendarCheck,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faDownload
 } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -44,7 +45,8 @@ library.add(
   faInfoCircle,
   faSignOutAlt,
   faCalendarCheck,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faDownload
 );
 ReactDOM.render(
   <Provider store={store}>

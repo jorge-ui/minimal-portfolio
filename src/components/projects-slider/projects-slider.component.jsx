@@ -128,5 +128,6 @@ const getTransitionConfig = isNext => ({
     clamp: true,
     tension: 180,
     friction: 25
-  }
+  },
+  unique: true
 });

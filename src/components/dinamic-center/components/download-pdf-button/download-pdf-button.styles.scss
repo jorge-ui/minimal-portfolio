@@ -1,0 +1,35 @@
+@import "../../../../vars";
+
+$iconSize: 50%;
+
+.download-pdf-button {
+  @include flexCentered;
+  position: absolute;
+  background-color: $itemBg;
+  left: 70vw;
+  width: 5vw;
+  height: 5vw;
+  box-shadow: 0 0 1px 1px $iconColor;
+  &:hover {
+    cursor: pointer;
+    background-color: $itemHover;
+  }
+  a {
+    @include flexCentered;
+    width: 100%;
+    height: 100%;
+    .icon {
+      width: $iconSize;
+      height: $iconSize;
+      color: $iconColor;
+    }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .download-pdf-button {
+    left: 60vw;
+    width: 15vw;
+    height: 15vw;
+  }
+}

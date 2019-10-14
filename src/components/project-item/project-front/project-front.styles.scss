@@ -184,6 +184,7 @@
     .details {
       display: block;
       overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
       height: fit-content;
       h3 {
         padding-left: 20px;
