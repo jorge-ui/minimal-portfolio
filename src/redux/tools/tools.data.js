@@ -6,7 +6,7 @@ export default [
     background: '#171E26',
     color: '#E535AB',
     description:
-      'I have experimented with it by building a GraphQL server using Node.js, setting up the corresponding schemas, resolver, and then implemented with React using Apollo.'
+      'I have experimented with it by building a GraphQL server using Node.js, setting up the schemas, resolver, and then implemented with React using Apollo.'
   },
   {
     id: 2,
