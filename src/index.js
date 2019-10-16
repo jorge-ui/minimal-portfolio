@@ -48,9 +48,13 @@ library.add(
   faExternalLinkAlt,
   faDownload
 );
+
+const rootPath =
+  process.env.NODE_ENV === 'production' ? '/minimal-portfolio/' : '/';
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename={rootPath}>
       <App />
     </BrowserRouter>
   </Provider>,
