@@ -9,39 +9,16 @@ const ObjectivePage = () => {
     <div>
       <h2>Objective</h2>
       <p>
-        Hi, my name is Jorge Rivera and I enjoy building and designing user
-        interfaces, I’ve built many projects in the past by now and I find
-        myself always caring more and more about UI/UX, which is what I do best.
-      </p>
-      <p>
-        <b>
-          My mission is to utilize today’s latest web tools to provide the user
-          with a pleasant and meaningful experience
-        </b>
-        , one that they will remember because it was special. Business and
-        marketing are all about the visuals, for the most part. So this is what
-        I came to do.
+        Ever since I printed "hello world", I knew what I wanted to do :) Building and designing user
+        interfaces is fun, and a challenge, I care about UI/UX, <b>my goal is to create beautiful experiences</b>,
+        or to improve on any existing projects out there.
       </p>
       <blockquote>
         I look forward to building great experiences together.
       </blockquote>
     </div>
   );
-  const transition = useTransition(jsx.props.children, (item, i) => i, {
-    from: {
-      opacity: 0,
-      transform: 'translateX(350px)'
-    },
-    enter: {
-      opacity: 1,
-      transform: 'translateX(0px)'
-    },
-    trail: 400,
-    config: {
-      duration: 600,
-      easing: easeOutQuart
-    }
-  });
+  const transition = useTransition(jsx.props.children, (item, i) => i, transitionConfig);
 
   return (
     <div className="objective-page">
@@ -55,6 +32,22 @@ const ObjectivePage = () => {
       })}
     </div>
   );
+};
+
+const transitionConfig = {
+  from: {
+    opacity: 0,
+    transform: 'translateX(350px)'
+  },
+  enter: {
+    opacity: 1,
+    transform: 'translateX(0px)'
+  },
+  trail: 400,
+  config: {
+    duration: 600,
+    easing: easeOutQuart
+  }
 };
 
 export default ObjectivePage;

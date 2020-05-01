@@ -32,10 +32,10 @@ const Canvas = ({ startDelay, active }) => {
     } else {
       leaveTimeout = setTimeout(() => (isOn = false), startDelay + 50);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [active]);
 
-  return <canvas ref={canvasRef} className="canvas" {...size}></canvas>;
+  return <canvas ref={ canvasRef } className="canvas" { ...size }/>;
 };
 
 export default Canvas;
@@ -61,14 +61,13 @@ class Bubble {
     this.opacity = opacity - bubblesTransition;
     this.scale = scale - bubblesTransition;
   }
-  X = this.X;
 }
 
 // Render function
 const renderCanvas = frame => {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-  if (frame % bubblesFpsInterval === 0) newBubleToWheelItems();
+  if (frame % bubblesFpsInterval === 0) newBubbleToWheelItems();
 
   // eslint-disable-next-line no-unused-vars
   for (let i in bubbles) bubbles[i].draw();
@@ -76,7 +75,7 @@ const renderCanvas = frame => {
   isOn && requestAnimationFrame(() => renderCanvas(++frame));
 };
 
-function newBubleToWheelItems() {
+function newBubbleToWheelItems() {
   wheelItems.forEach(({ firstChild: item }) => {
     let x, y, r;
     const { top, left, width, height } = item.getBoundingClientRect();

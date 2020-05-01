@@ -4,6 +4,7 @@
   @include flexCentered;
   width: 100%;
   height: 100%;
+  background-color: $itemBg;
   &:hover {
     cursor: pointer;
     background-color: $itemHover;

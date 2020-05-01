@@ -21,7 +21,7 @@ const ProjectFront = ({
   const [isFullScreenShot, setFullScreenShot] = useState(false);
 
   function viewBackface() {
-    setProjectViewed(project.id);
+    setProjectViewed(project.title);
     setIsViewBackface(true);
   }
 

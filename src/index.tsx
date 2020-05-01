@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTools,
@@ -51,9 +51,9 @@ library.add(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

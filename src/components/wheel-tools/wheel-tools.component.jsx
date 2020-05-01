@@ -7,9 +7,10 @@ import { useTransition } from 'react-spring';
 // Redux
 import { connect } from 'react-redux';
 import { clearShowingTool } from '../../redux/tools/tools.actions';
+import { easeInOutQuart } from "../../utils/easingFuctions";
 
 const fullCircle = Math.PI * 2;
-const transitionDelay = 300;
+const transitionDelay = 450;
 const transitionTrial = 50;
 
 const WheelTools = ({ children, clearShowingTool }) => {
@@ -41,9 +42,10 @@ const WheelTools = ({ children, clearShowingTool }) => {
       return next({ opacity: 1, positioned });
     },
     config: {
-      friction: 15,
-      mass: 1.2
-    }
+      easing: easeInOutQuart,
+      // friction: 15,
+      // mass: 1.2
+    },
   });
 
   return (

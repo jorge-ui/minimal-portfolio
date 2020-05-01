@@ -6,9 +6,10 @@ import ProjectBack from './project-back/project-back.component';
 // Modules
 import { easeOutCubic, easeInCubic } from '../../utils/easingFuctions';
 import { animated, useTransition } from 'react-spring';
+import useIsMobile from "../../hooks/useIsMobile";
 
 const ProjectItem = ({ project, props, backFaceViewed }) => {
-  const rotateAxis = window.isMobile() ? 'Y' : 'X';
+  const rotateAxis = useIsMobile() ? 'Y' : 'X';
   const [isViewBackface, setIsViewBackface] = useState(false);
   const [transitionIsRested, setTransitionIsRested] = useState(false);
 
@@ -23,14 +24,16 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
     )
   );
 
+  const onSetIsViewBackface = val => {
+    if (props.transform.payload[0].done) setIsViewBackface(val);
+  }
+
   return (
     <animated.div className="project-item" style={props}>
       {faceTransition.map(({ item, props, key }) =>
         item ? (
           <ProjectBack
-            setIsViewBackface={val => {
-              if (props.transform.payload[0].done) setIsViewBackface(val);
-            }}
+            setIsViewBackface={onSetIsViewBackface}
             key={key}
             props={props}
             projectSummary={project.summary}
@@ -38,9 +41,7 @@ const ProjectItem = ({ project, props, backFaceViewed }) => {
           />
         ) : (
           <ProjectFront
-            setIsViewBackface={val => {
-              if (props.transform.payload[0].done) setIsViewBackface(val);
-            }}
+            setIsViewBackface={onSetIsViewBackface}
             key={key}
             props={props}
             project={project}

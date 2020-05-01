@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './skills-page.styles.scss';
 // Modules
 import { animated, useTransition } from 'react-spring';
-import { wait } from '../../utils/utilityFunctions';
+import { wait } from '../../utils';
 import useWindowWidthAndHeight from '../../utils/useWindowWidthAndHeight';
 // Redux
 import { connect } from 'react-redux';

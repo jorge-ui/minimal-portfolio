@@ -15,7 +15,7 @@ import {
   previousProject
 } from '../../redux/projects/projects.actions';
 import ProjectItem from '../project-item/project-item.component';
-import { wait } from '../../utils/utilityFunctions';
+import { wait } from '../../utils';
 
 const ProjectsSlider = ({
   projectsItems,
@@ -37,15 +37,15 @@ const ProjectsSlider = ({
     };
     return () => (window.onkeydown = null);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const currentProject = projectsItems[currentProjectIndex];
-  currentProject.backFaceViewed = viewedItems.includes(currentProject.id);
+  const currentProject = {...projectsItems[currentProjectIndex]};
+  currentProject.backFaceViewed = viewedItems.includes(currentProject.title);
 
   const prev = usePrevious(currentProjectIndex);
   const isNextSlide = prev < currentProjectIndex;
 
   const transition = useTransition(
     currentProject,
-    item => item.id,
+    item => item.title,
     getTransitionConfig(isNextSlide)
   );
 
@@ -81,14 +81,14 @@ const transformXOffset = 0.35;
 const initialTransform = 'matrix(1, 0, 0, 1, 0, 0)';
 const enterTransform = 'matrix(0.7,0.00,0.00,0.7,0,0)';
 
-const nextTransform = `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+const nextTransform = `matrix(0.7,0.00,0.00,0.7,${(window.innerWidth*.75) *
   (1 - transformXOffset)},0)`;
-const nextLeaveTransform = `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+const nextLeaveTransform = `matrix(0.7,0.00,0.00,0.7,-${(window.innerWidth*.75) *
   transformXOffset},0)`;
 
-const previousTransform = `matrix(0.7,0.00,0.00,0.7,-${window.innerWidth *
+const previousTransform = `matrix(0.7,0.00,0.00,0.7,-${(window.innerWidth*.75) *
   (1 - transformXOffset)},0)`;
-const previousLeaveTransform = `matrix(0.7,0.00,0.00,0.7,${window.innerWidth *
+const previousLeaveTransform = `matrix(0.7,0.00,0.00,0.7,${(window.innerWidth*.75) *
   transformXOffset},0)`;
 
 const getTransitionConfig = isNext => ({
