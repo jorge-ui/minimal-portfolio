@@ -2,8 +2,8 @@
 const projectsData: ProjectsData[] = [
 	{ // Movie Ratings
 		title: 'Movie Ratings',
-		appLink: 'https://bit.ly/open-app-movie-ratings',
-		repoLink: 'https://github.com/jrdeveloper71/movie-ratings-app',
+		appLink: 'https://bit.ly/jorge-ui-movie-ratings',
+		repoLink: 'https://github.com/jorge-ui/movie-ratings-app',
 		icon: require('../../assets/projects/movie-ratings/icon.png'),
 		summary: `
       Latest project! Beautiful UI and great UX, made with themoviedb.org API.
@@ -37,8 +37,8 @@ const projectsData: ProjectsData[] = [
 	},
 	{ // Crown Clothing
 		title: 'Crown Clothing',
-		appLink: 'http://bit.ly/open-app-crown-clothing',
-		repoLink: 'https://github.com/jrdeveloper71/clothing-ecommerce',
+		appLink: 'https://bit.ly/jorge-ui-clothing-ecommerce',
+		repoLink: 'https://github.com/jorge-ui/clothing-ecommerce',
 		icon: require('../../assets/projects/crown-clothing/icon.png'),
 		summary: `
       A well planned and well structured react app with redux.
@@ -74,8 +74,8 @@ const projectsData: ProjectsData[] = [
 	},
 	{ // Space Image Visualizer
 		title: 'Space Image Visualizer',
-		appLink: 'http://bit.ly/open-app-space-visualizer',
-		repoLink: 'https://github.com/jrdeveloper71/space-visualizer',
+		appLink: 'https://bit.ly/jorge-ui-space-visualizer',
+		repoLink: 'https://github.com/jorge-ui/space-visualizer',
 		icon: require('../../assets/projects/space-image-visualizer/icon.png'),
 		summary: `
       Many images to visualize them floating, that was the idea, so I grabbed the pixabay.com
@@ -108,7 +108,7 @@ const projectsData: ProjectsData[] = [
 	{ // Developer Connector
 		title: 'Developer Connector',
 		appLink: 'http://bit.ly/open-app-dev-connector',
-		repoLink: 'https://github.com/jrdeveloper71/dev-connector',
+		repoLink: 'https://github.com/jorge-ui/dev-connector',
 		icon: require('../../assets/projects/dev-connector/icon.png'),
 		summary: `
       By far the biggest project I’ve built on my own, Developer Connector is built from the ground up,
@@ -148,8 +148,8 @@ const projectsData: ProjectsData[] = [
 	},
 	{ // Burger Builder
 		title: 'Burger Builder',
-		appLink: 'http://bit.ly/open-app-burger-builder',
-		repoLink: 'https://github.com/jrdeveloper71/burger-builder',
+		appLink: 'https://bit.ly/jorge-ui-burger-builder',
+		repoLink: 'https://github.com/jorge-ui/burger-builder',
 		icon: require('../../assets/projects/burger-builder/icon.png'),
 		summary: `
       A simple and straight-forward way to customize a burger to your liking, with easy
@@ -182,8 +182,8 @@ const projectsData: ProjectsData[] = [
 	},
 	{ // My Old Portfolio
 		title: 'My Old Portfolio',
-		appLink: 'http://bit.ly/open-app-old-portfolio',
-		repoLink: 'https://github.com/jrdeveloper71/old-portfolio',
+		appLink: 'https://bit.ly/jorge-ui-old-portfolio',
+		repoLink: 'https://github.com/jorge-ui/old-portfolio',
 		icon: require('../../assets/projects/old-portfolio/icon.png'),
 		summary: `
       My old portfolio was my first attempt at presenting my work, and then this new website
