@@ -8,11 +8,8 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 // Redux
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectDisabledArrow } from '../../redux/projects/projects.selectors';
-import {
-  nextProject,
-  previousProject
-} from '../../redux/projects/projects.actions';
+import { selectDisabledArrow } from '../../store/projects/projects.selectors';
+import { nextProject, previousProject } from '../../store/projects/projects.actions';
 
 const PortfolioPage = ({ disabledArrow, nextProject, previousProject }) => {
   const disablePrevious = disabledArrow.includes('left');

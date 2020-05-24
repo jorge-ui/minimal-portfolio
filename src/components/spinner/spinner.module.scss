@@ -1,0 +1,26 @@
+@import "src/vars";
+
+
+.root {
+	$size: 105px;
+	height: $size;
+	width: $size;
+	animation: circleSpin 3s linear infinite;
+	transform-origin: center;
+	circle {
+		background-color: transparent;
+		stroke: #1e4d75;
+		stroke-width: 2px;
+		animation: circleSpin 1s ease-in-out infinite 200ms;
+		transform-origin: center;
+	}
+}
+
+@keyframes circleSpin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

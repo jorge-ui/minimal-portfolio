@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './screenshots-slider.styles.scss';
 // Modules
 import usePrevious from '../../../utils/usePrevious';
-import { useTransition, animated } from 'react-spring';
+import { animated, useTransition } from 'react-spring';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { easeOutCubic } from '../../../utils/easingFuctions';
 
@@ -13,12 +13,13 @@ const ScreenshotsSlider = ({
 }) => {
   const [viewMobile, setViewMobile] = useState(false);
   const images = viewMobile ? mobile : desktop;
-  const [index, setIndex] = useState(images.length * 10000);
+  const imagesLength = Object.keys(images).length;
+  const [index, setIndex] = useState(imagesLength * 10000);
 
   const prevIndex = usePrevious(index);
   const isNextSlide = prevIndex < index;
 
-  const transitionImages = useTransition(images[index % images.length], null, {
+  const transitionImages = useTransition(images[index % imagesLength], null, {
     ...transitionConfig,
     from: isNextSlide ? rightPosHidden : leftPosHidden,
     leave: isNextSlide ? leftPosHidden : rightPosHidden

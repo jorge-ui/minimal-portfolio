@@ -2,7 +2,7 @@ import React from 'react';
 import './tools-info.styles.scss';
 // Redux
 import { connect } from 'react-redux';
-import { clearShowingTool } from '../../../../redux/tools/tools.actions';
+import { clearShowingTool } from '../../../../store/tools/tools.actions';
 
 const ToolsInfo = ({ item, clearShowingTool }) => {
   const isMobile = window.isMobile();

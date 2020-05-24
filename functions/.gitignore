@@ -1,0 +1,10 @@
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+# Typescript v1 declaration files
+typings/
+
+node_modules/
+
+minimal-portfolio-4b77d-firebase-adminsdk-7nces-a11009a9e0.json

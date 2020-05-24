@@ -4,11 +4,8 @@ import './wheel-tool.styles.scss';
 import { animated } from 'react-spring';
 // Redux
 import { connect } from 'react-redux';
-import { createToolIsShowingSelector } from '../../redux/tools/tools.selectors';
-import {
-  setShowingTool,
-  clearShowingTool
-} from '../../redux/tools/tools.actions';
+import { createToolIsShowingSelector } from '../../store/tools/tools.selectors';
+import { clearShowingTool, setShowingTool } from '../../store/tools/tools.actions';
 
 const WheelTool = ({
   position,

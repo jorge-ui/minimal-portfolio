@@ -5,9 +5,9 @@ import './center-item.styles.scss';
 import { animated, useTransition } from 'react-spring';
 // Redux
 import { useSelector } from 'react-redux';
-import { resetCenterXy } from '../../redux/center/center.actions';
+import { resetCenterXy } from '../../store/center/center.actions';
 import useLocationPath from "../../hooks/useLocationPath";
-import store from "../../redux/store";
+import store from "../../store/store";
 import ToolsCenter from "../dinamic-center/components/tools-center/tools-center.component";
 import GoBack from "../dinamic-center/components/go-back/go-back.component";
 import DownloadPdfButton from "../dinamic-center/components/download-pdf-button/download-pdf-button.component";
@@ -80,7 +80,7 @@ const CenterItem = () => {
 // @ts-ignore
 const selectCenterSize = state => state.center.size;
 
-export default React.memo(CenterItem);
+export default React.memo(CenterItem, () => true);
 
 function DefaultCenter() {
 	return (

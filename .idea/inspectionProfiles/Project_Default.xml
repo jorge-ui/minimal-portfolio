@@ -1,14 +1,20 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="ExceptionCaughtLocallyJS" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="4">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="disabled" />
             <item index="1" class="java.lang.String" itemvalue="nested" />
             <item index="2" class="java.lang.String" itemvalue="viewed" />
             <item index="3" class="java.lang.String" itemvalue="current-project" />
+            <item index="4" class="java.lang.String" itemvalue="is-mobile" />
+            <item index="5" class="java.lang.String" itemvalue="is-fullscreen" />
+            <item index="6" class="java.lang.String" itemvalue="is-zoomed" />
+            <item index="7" class="java.lang.String" itemvalue="toggled" />
+            <item index="8" class="java.lang.String" itemvalue="mobile" />
           </list>
         </value>
       </option>
