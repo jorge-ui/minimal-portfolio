@@ -19,9 +19,7 @@ const ToolsPage: FC = () => {
 	if (isFetching)
 		return <Spinner/>;
 	else return !!items?.length ? (
-		<WheelTools>
-			{items}
-		</WheelTools>
+		<WheelTools items={items}/>
 	) : null;
 };
 

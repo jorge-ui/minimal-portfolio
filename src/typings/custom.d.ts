@@ -5,6 +5,7 @@ declare global {
 	export const firestore: firebase.firestore.Firestore;
 	export const fire_storage: firebase.storage.Storage;
 	export interface Window {
+		clearToolTimeout: NodeJS.Timeout;
 		firestore: firebase.firestore.Firestore;
 		fire_storage: firebase.storage.Storage;
 		isMobile: () => boolean;

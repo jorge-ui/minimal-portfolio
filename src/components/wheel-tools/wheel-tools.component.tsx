@@ -1,43 +1,53 @@
-import React, { FC, useEffect } from 'react';
+import React, { CSSProperties, FC, useEffect } from 'react';
 import './wheel-tools.styles.scss';
 // Components
 import WheelTool from '../wheel-tool/wheel-tool.component';
 // Modules
-import { useTransition } from 'react-spring';
+import { useTransition, UseTransitionProps } from 'react-spring';
 // Redux
 import { clearShowingTool } from '../../store/tools/tools.actions';
 import { easeInOutQuart } from "../../utils/easingFuctions";
 import store from "../../store/store";
+import useIsMobile from "../../hooks/useIsMobile";
+import { AppState } from "../../store";
+import { ToolData } from "../../store/tools/tools.types";
 
 const fullCircle = Math.PI * 2;
 const transitionDelay = 450;
 const transitionTrial = 50;
 
 interface Props {
-	children?: any[]
+	items: AppState["tools"]["items"]
+}
+export type MyTransitionProps = CSSProperties & { positioned: [number, number] };
+
+interface PositionedItem extends ToolData {
+	positioned: [number, number];
+	index: number
 }
 
-const WheelTools: FC<Props> = ({children}) => {
+const WheelTools: FC<Props> = ({items}) => {
 
-	const isMobile = window.isMobile();
-// eslint-disable-next-line react-hooks/exhaustive-deps
+	const isMobile = useIsMobile();
+
 	useEffect(() => () => store.dispatch(clearShowingTool()), []);
 
-	const length = children?.length || 0;
+	const length = items?.length || 0;
 	const radius = isMobile
 		? window.screen.availHeight * 0.225
 		: window.innerWidth * 0.2;
 
-	const positionedChildren = children?.map((child, index) => {
+	const positionedChildren: PositionedItem[] = [...(items || [])].map((tool, index) => {
 		let theta = fullCircle * (index / length);
 		let x = Math.cos(theta) * radius;
 		let y = Math.sin(theta) * radius;
-		return {...child, positioned: [x, y], index};
+		return {...tool, positioned: [x, y], index};
 	});
 
-	const transition = useTransition<any, any>(positionedChildren, item => item.index, transitionConfig);
+	const transition = useTransition<PositionedItem, MyTransitionProps>
+		(positionedChildren, item => item.index, transitionConfig as any);
 
-	if (!children?.length) return null;
+	if (!items?.length) return null;
 
 	return (
 		<div className="wheel-tools">
@@ -46,18 +56,19 @@ const WheelTools: FC<Props> = ({children}) => {
 					key={key}
 					item={item}
 					position={props.positioned}
-					props={props}
+					springProps={props}
 				/>
 			))}
 		</div>
 	);
 };
 
-const transitionConfig: any = {
+const transitionConfig: UseTransitionProps<PositionedItem, MyTransitionProps> = {
 	from: {
 		opacity: -0.3,
 		positioned: [0, 0]
 	},
+	// @ts-ignore
 	enter: (item: any) => async (next: (config: object) => void) => {
 
 		await next({
