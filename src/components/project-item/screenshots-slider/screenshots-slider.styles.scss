@@ -5,21 +5,23 @@ $lateralArrowsOffset: 20px;
 $easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1);
 
 .screenshots-slider {
-  $containerWidth: 70%;
   position: relative;
   flex: 1;
   width: 100%;
   .screenshots-container-wraper {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     .screenshots-container {
       position: relative;
-      width: $containerWidth;
+      width: 70%;
       margin: 0 auto;
-      transition: transform 450ms $easeOutCubic;
-      &[is-mobile=true] {
+      transition:
+              width 200ms 400ms ease,
+              min-width 500ms ease-out;
+      min-width: 0vw;
+      &[is-mobile=true] .screenshot-item-wraper {
         transform: scaleX(0.31641);
         .screenshot-item-wraper {
           .arrows {
@@ -28,23 +30,20 @@ $easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1);
             }
           }
         }
-        .device-toggler {
-          transform: scaleX(3);
-        }
-      }
-      &[is-fullscreen=true] {
-        width: $containerWidth * 1.05;
       }
       .screenshot-item-wraper {
         @include flexCentered;
         box-shadow: 0 0 8px rgba(128, 128, 128, 0.4);
         border-radius: 5px;
         position: relative;
+        top: 0;
+        left: 0;
         height: 0;
         width: 100%;
         padding-bottom: 56.25%;
         margin: 0 auto;
         overflow: hidden;
+        transition: transform 450ms $easeOutCubic;
         .screenshot-item {
           position: absolute;
           top: 0;
@@ -181,38 +180,20 @@ $easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1);
   .screenshots-slider {
     .screenshots-container-wraper {
       .screenshots-container {
-        $containerWidth: 80%;
+        width: 85%;
+        &[is-mobile=true] {
+          width: 100%;
+        }
         &[is-fullscreen=true] {
-          width: $containerWidth * 1.05;
+          width: 100%;
           &[is-mobile=true] {
-            transform: scaleX(0.31641) scale(2.5);
+            min-width: 200vw;
+            //transform: scaleX(0.31641) scale(2.5);
             .screenshot-item-wraper {
               .arrows {
                 svg {
                   transform: scale(2, .8);
                 }
-              }
-            }
-          }
-        }
-        &[is-mobile=true] {
-          .device-toggler {
-            transform: scale(2.92, 1.1) translateY(2px);
-            &::before {
-              display: none;
-            }
-            &::after {
-              display: none;
-            }
-          }
-          &[is-fullscreen=true] {
-            .device-toggler {
-              transform: scale(1.4, .45) translateY(-14px);
-              &::before {
-                display: block;
-              }
-              &::after {
-                display: block;
               }
             }
           }

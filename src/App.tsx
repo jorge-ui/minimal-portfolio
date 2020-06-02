@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { CSSProperties, useEffect } from 'react';
 import './App.scss';
 import backgroundImage from './assets/white-background.jpg';
@@ -123,4 +124,4 @@ const nestInConfig: UseTransitionProps<string, CSSProperties> = {
     }
 };
 
-export default App;
+export default hot(App);

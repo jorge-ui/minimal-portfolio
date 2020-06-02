@@ -155,6 +155,7 @@
     &[fullscreenshot=true] {
       .details {
         display: flex;
+        padding-top: unset;
         flex-direction: column;
         .info-screenshots {
           flex: 1;
@@ -163,6 +164,7 @@
     }
     .header {
       flex: .8;
+      background-color: rgba(0, 0, 0, 0.2);
       .image-wraper {
         width: 30%;
         margin: 0;
@@ -182,6 +184,7 @@
       display: none;
     }
     .details {
+      padding-top: 40px;
       display: block;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
@@ -190,7 +193,7 @@
         padding-left: 20px;
       }
       .info-tools-wraper {
-        margin-top: 10px;
+        margin-top: 40px;
         flex: unset;
         overflow: visible;
         height: fit-content;
@@ -202,6 +205,11 @@
       .info-screenshots {
         flex: unset;
         height: 35vh;
+      }
+      &:after {
+        content: '';
+        display: block;
+        height: 100px;
       }
     }
     .vhr {
