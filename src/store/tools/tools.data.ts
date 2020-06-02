@@ -115,13 +115,6 @@ const toolsData: ToolData[] = [
   }
 ];
 
-// @ts-ignore
-window.testToolsData = () => {
-  toolsData.forEach(tool => {
-    void window.firestore.collection('tools').add(tool)
-  })
-}
-
 
 export default toolsData;
 
