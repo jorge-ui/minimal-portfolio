@@ -43,11 +43,11 @@ const ObjectivePage = () => {
 				const {localName, innerHTML} = item as unknown as HTMLElement;
 
 				const Element = animated[localName as keyof JSX.IntrinsicElements];
-				return (
-					<Element key={key} style={spring}>
-						{innerHTML}
-					</Element>
-				);
+
+				return <Element key={key}
+					         style={spring}
+					         dangerouslySetInnerHTML={{__html: innerHTML}}
+					/>
 			})}
 		</div>
 	);
